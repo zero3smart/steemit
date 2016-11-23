@@ -129,8 +129,8 @@ class BlocktradesDeposit extends React.Component {
         const hasError = userTradeError != null
         const est = getEstimatedValue(this.props, flip)
         const getAddressLabel = inputAddress ? 'Change Deposit Address' : 'Get Deposit Address'
-        const arrowIcon = <span>→</span>
-        const flipIcon = <span>⇆</span>
+        const arrowIcon = <span>?</span>
+        const flipIcon = <span>?</span>
         const estimateInputCoin = flip ? coinName(outputCoin.value) : coinName(inputCoin.value)
 
         const trRows = !transactions ? null : transactions.toJS().map((tr, idx) => <div key={idx}>
