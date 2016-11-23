@@ -71,11 +71,10 @@ export default class DropdownMenu extends React.Component {
                 {hasDropdown && <Icon name="dropdown-arrow" />}
             </span>
 
-        if(hasDropdown) entry = <a key="entry" href={href || '#'} onMouseDown={this.toggle}>{entry}</a>
+        if(hasDropdown) entry = <a key="entry" href={href || '#'} onMouseDown={this.toggle} onClick={e => {e.preventDefault()}}>{entry}</a>
 
         const menu = <VerticalMenu key="menu" title={title} items={items} hideValue={selected} className="VerticalMenu" />;
         const cls = 'DropdownMenu' + (this.state.shown ? ' show' : '') + (className ? ` ${className}` : '')
         return React.createElement(el, {className: cls}, [entry, menu]);
     }
 }
-
