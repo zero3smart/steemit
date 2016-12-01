@@ -1,6 +1,7 @@
 /* eslint react/prop-types: 0 */
 import React from 'react';
 import {connect} from 'react-redux'
+import {Link} from 'react-router'
 import g from 'app/redux/GlobalReducer'
 import SavingsWithdrawHistory from 'app/components/elements/SavingsWithdrawHistory';
 import TransferHistoryRow from 'app/components/cards/TransferHistoryRow';
@@ -13,7 +14,10 @@ import {steemTip, powerTip, valueTip, savingsTip} from 'app/utils/Tips'
 import {numberWithCommas, vestingSteem} from 'app/utils/StateFunctions'
 import FoundationDropdownMenu from 'app/components/elements/FoundationDropdownMenu'
 import WalletSubMenu from 'app/components/elements/WalletSubMenu'
-import shouldComponentUpdate from 'app/utils/shouldComponentUpdate';
+import Tooltip from 'app/components/elements/Tooltip'
+import { translate } from 'app/Translator';
+
+const assetPrecision = 1000;
 
 class UserWallet extends React.Component {
     constructor() {
@@ -29,21 +33,18 @@ class UserWallet extends React.Component {
             this.setState({showDeposit: !this.state.showDeposit, depositType: 'VESTS'})
         }
         // this.onShowDeposit = this.onShowDeposit.bind(this)
-        this.shouldComponentUpdate = shouldComponentUpdate(this, 'UserWallet');
     }
     render() {
-        const {state: {showDeposit, depositType, toggleDivestError},
-            onShowDeposit, onShowDepositSteem, onShowDepositPower} = this
-        const {convertToSteem, price_per_steem, savings_withdraws, account,
-            current_user} = this.props
-        const gprops = this.props.gprops.toJS();
+        const {state: {showDeposit, depositType, toggleDivestError}, onShowDeposit, onShowDepositSteem, onShowDepositPower} = this
+        const {convertToSteem, price_per_steem, savings_withdraws, open_orders} = this.props
+        let account          = this.props.account;
+        let current_user     = this.props.current_user;
+        let gprops           = this.props.global.getIn( ['props'] ).toJS();
 
-        if (!account) return null;
-
-        let vesting_steemf = vestingSteem(account.toJS(), gprops);
+        let vesting_steemf = vestingSteem(account, gprops);
         let vesting_steem = vesting_steemf.toFixed(3);
 
-        let isMyAccount = current_user && current_user.get('username') === account.get('name');
+        let isMyAccount = current_user && current_user.get('username') === account.name;
 
         const disabledWarning = false;
         // isMyAccount = false; // false to hide wallet transactions
@@ -51,18 +52,17 @@ class UserWallet extends React.Component {
         const showTransfer = (asset, transferType, e) => {
             e.preventDefault();
             this.props.showTransfer({
-                to: (isMyAccount ? null : account.get('name')),
+                to: (isMyAccount ? null : account.name),
                 asset, transferType
             });
         };
 
-        const savings_balance = account.get('savings_balance');
-        const savings_sbd_balance = account.get('savings_sbd_balance');
+        const {savings_balance, savings_sbd_balance} = account
 
         const powerDown = (cancel, e) => {
             e.preventDefault()
-            const name = account.get('name');
-            const vesting_shares = cancel ? '0.000000 VESTS' : account.get('vesting_shares')
+            const {name} = account
+            const vesting_shares = cancel ? '0.000000 VESTS' : account.vesting_shares
             this.setState({toggleDivestError: null})
             const errorCallback = e2 => {this.setState({toggleDivestError: e2.toString()})}
             const successCallback = () => {this.setState({toggleDivestError: null})}
@@ -82,13 +82,25 @@ class UserWallet extends React.Component {
             })
         }
 
-        const balance_steem = parseFloat(account.get('balance').split(' ')[0]);
+        const balance_steem = parseFloat(account.balance.split(' ')[0]);
         const saving_balance_steem = parseFloat(savings_balance.split(' ')[0]);
         const total_steem = (vesting_steemf + balance_steem + saving_balance_steem + savings_pending).toFixed(3);
-        const divesting = parseFloat(account.get('vesting_withdraw_rate').split(' ')[0]) > 0.000000;
-        const sbd_balance = parseFloat(account.get('sbd_balance'))
+        const divesting = parseFloat(account.vesting_withdraw_rate.split(' ')[0]) > 0.000000;
+        const sbd_balance = parseFloat(account.sbd_balance)
         const sbd_balance_savings = parseFloat(savings_sbd_balance.split(' ')[0]);
         const total_sbd = sbd_balance + sbd_balance_savings + savings_sbd_pending
+        const sbdOrders = (!open_orders || !isMyAccount) ? 0 : open_orders.reduce((o, order) => {
+            if (order.sell_price.base.indexOf("SBD") !== -1) {
+                o += order.for_sale;
+            }
+            return o;
+        }, 0) / assetPrecision;
+        const steemOrders = (!open_orders || !isMyAccount) ? 0 : open_orders.reduce((o, order) => {
+            if (order.sell_price.base.indexOf("STEEM") !== -1) {
+                o += order.for_sale;
+            }
+            return o;
+        }, 0) / assetPrecision;
 
         // set displayed estimated value
         let total_value = '$' + numberWithCommas(
@@ -103,18 +115,16 @@ class UserWallet extends React.Component {
 
         /// transfer log
         let idx = 0
-        const transfer_log = account.get('transfer_history').map(item => {
-            const data = item.getIn([1, 'op', 1]);
-            const type = item.getIn([1, 'op', 0]);
-
+        const transfer_log = account.transfer_history.map(item => {
+            const data = item[1].op[1]
             // Filter out rewards
-            if (type === "curation_reward" || type === "author_reward") {
+            if (item[1].op[0] === "curation_reward" || item[1].op[0] === "author_reward") {
                 return null;
             }
 
             if(data.sbd_payout === '0.000 SBD' && data.vesting_payout === '0.000000 VESTS')
                 return null
-            return <TransferHistoryRow key={idx++} op={item.toJS()} context={account.get('name')} />;
+            return <TransferHistoryRow key={idx++} op={item} context={account.name} />;
         }).filter(el => !!el);
         transfer_log.reverse();
 
@@ -141,7 +151,7 @@ class UserWallet extends React.Component {
             { value: 'Buy or Sell', link: '/market' },
             { value: 'Convert to STEEM', link: '#', onClick: convertToSteem },
         ]
-        const isWithdrawScheduled = new Date(account.get('next_vesting_withdrawal') + 'Z').getTime() > Date.now()
+        const isWithdrawScheduled = new Date(account.next_vesting_withdrawal + 'Z').getTime() > Date.now()
         const depositReveal = showDeposit && <div>
             <Reveal onHide={onShowDeposit} show={showDeposit}>
                 <CloseButton onClick={onShowDeposit} />
@@ -150,8 +160,10 @@ class UserWallet extends React.Component {
         </div>
 
         const steem_balance_str = numberWithCommas(balance_steem.toFixed(3)) // formatDecimal(balance_steem, 3)
+        const steem_orders_balance_str = numberWithCommas(steemOrders.toFixed(3))
         const power_balance_str = numberWithCommas(vesting_steem) // formatDecimal(vesting_steem, 3)
         const sbd_balance_str = numberWithCommas('$' + sbd_balance.toFixed(3)) // formatDecimal(account.sbd_balance, 3)
+        const sbd_orders_balance_str = numberWithCommas('$' + sbdOrders.toFixed(3))
         const savings_balance_str = numberWithCommas(saving_balance_steem.toFixed(3) + ' STEEM')
         const savings_sbd_balance_str = numberWithCommas('$' + sbd_balance_savings.toFixed(3))
 
@@ -169,7 +181,7 @@ class UserWallet extends React.Component {
         return (<div className="UserWallet">
             <div className="row">
                 <div className="columns small-10 medium-12 medium-expand">
-                    {isMyAccount ? <WalletSubMenu account_name={account.get('name')} /> : <div><br /><h4>BALANCES</h4><br /></div>}
+                    {isMyAccount ? <WalletSubMenu account_name={account.name} /> : <div><br /><h4>BALANCES</h4><br /></div>}
                 </div>
                 <div className="columns shrink">
                     {isMyAccount && <button className="UserWallet__buysp button hollow" onClick={this.onShowDepositSteem}>Buy Steem or Steem Power</button>}
@@ -183,6 +195,7 @@ class UserWallet extends React.Component {
                     {isMyAccount ?
                     <FoundationDropdownMenu className="Wallet_dropdown" dropdownPosition="bottom" dropdownAlignment="right" label={steem_balance_str + ' STEEM'} menu={steem_menu} />
                     : steem_balance_str + ' STEEM'}
+                    {steemOrders ? <div style={{paddingRight: "0.85rem"}}><Link to="/market"><Tooltip t={translate('open_orders')}>({steem_orders_balance_str} STEEM)</Tooltip></Link></div> : null}
                 </div>
             </div>
             <div className="UserWallet__balance row">
@@ -203,6 +216,7 @@ class UserWallet extends React.Component {
                     {isMyAccount ?
                     <FoundationDropdownMenu className="Wallet_dropdown" dropdownPosition="bottom" dropdownAlignment="right" label={sbd_balance_str} menu={dollar_menu} />
                     : sbd_balance_str}
+                    {sbdOrders ? <div style={{paddingRight: "0.85rem"}}><Link to="/market"><Tooltip t={translate('open_orders')}>({sbd_orders_balance_str})</Tooltip></Link></div> : null}
                 </div>
             </div>
             <div className="UserWallet__balance row">
@@ -235,7 +249,7 @@ class UserWallet extends React.Component {
             </div>
             <div className="UserWallet__balance row">
                 <div className="column small-12">
-                    {isWithdrawScheduled && <span>The next power down is scheduled to happen&nbsp; <TimeAgoWrapper date={account.get('next_vesting_withdrawal')} />.</span> }
+                    {isWithdrawScheduled && <span>The next power down is scheduled to happen&nbsp; <TimeAgoWrapper date={account.next_vesting_withdrawal} />.</span> }
                     {/*toggleDivestError && <div className="callout alert">{toggleDivestError}</div>*/}
                     <TransactionError opType="withdraw_vesting" />
                 </div>
@@ -282,14 +296,13 @@ export default connect(
                 price_per_steem = parseFloat(base.split(' ')[0])
         }
         const savings_withdraws = state.user.get('savings_withdraws')
-        const gprops = state.global.get('props');
-        const sbd_interest = gprops.get('sbd_interest_rate')
+        const sbd_interest = state.global.get('props').get('sbd_interest_rate')
         return {
             ...ownProps,
+            open_orders: state.market.get('open_orders'),
             price_per_steem,
             savings_withdraws,
-            sbd_interest,
-            gprops
+            sbd_interest
         }
     },
     // mapDispatchToProps
