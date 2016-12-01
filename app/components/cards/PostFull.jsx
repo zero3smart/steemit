@@ -21,6 +21,7 @@ import {Long} from 'bytebuffer'
 import {List} from 'immutable'
 import {repLog10, parsePayoutAmount} from 'app/utils/ParsersAndFormatters';
 import DMCAList from 'app/utils/DMCAList'
+import ShareMenu from 'app/components/elements/ShareMenu';
 
 function TimeAuthorCategory({content, authorRepLog10, showTags}) {
     return (
@@ -37,7 +38,7 @@ class PostFull extends React.Component {
     static propTypes = {
         // html props
         /* Show extra options (component is being viewed alone) */
-        cont: React.PropTypes.object.isRequired,
+        global: React.PropTypes.object.isRequired,
         post: React.PropTypes.string.isRequired,
 
         // connector props
@@ -65,7 +66,7 @@ class PostFull extends React.Component {
         }
         this.onDeletePost = () => {
             const {props: {deletePost}} = this
-            const content = this.props.cont.get(this.props.post);
+            const content = this.props.global.get('content').get(this.props.post);
             deletePost(content.get('author'), content.get('permlink'))
         }
     }
@@ -93,7 +94,7 @@ class PostFull extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        const names = 'cont, post, username'.split(', ')
+        const names = 'global, post, username'.split(', ')
         return names.findIndex(name => this.props[name] !== nextProps[name]) !== -1 ||
             this.state !== nextState
     }
@@ -129,7 +130,7 @@ class PostFull extends React.Component {
     }
 
     showPromotePost = () => {
-        const post_content = this.props.cont.get(this.props.post);
+        const post_content = this.props.global.get('content').get(this.props.post);
         if (!post_content) return
         const author = post_content.get('author')
         const permlink = post_content.get('permlink')
@@ -139,7 +140,7 @@ class PostFull extends React.Component {
     render() {
         const {props: {username, post}, state: {PostFullReplyEditor, PostFullEditEditor, formId, showReply, showEdit},
             onShowReply, onShowEdit, onDeletePost} = this
-        const post_content = this.props.cont.get(this.props.post);
+        const post_content = this.props.global.get('content').get(this.props.post);
         if (!post_content) return null;
         const p = extractContent(immutableAccessor, post_content);
         const content = post_content.toJS();
@@ -274,7 +275,7 @@ class PostFull extends React.Component {
                                     {' '}{showEditOption   && !showEdit  && <a onClick={onShowEdit}>Edit</a>}
                                     {' '}{showDeleteOption && !showReply && <a onClick={onDeletePost}>Delete</a>}
                                 </span>}
-                            <FoundationDropdownMenu menu={share_menu} icon="share" label="Share" dropdownPosition="bottom" dropdownAlignment="right" />
+                            <ShareMenu menu={share_menu} />
                     </div>
                 </div>
                 <div className="row">
