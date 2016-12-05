@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react'
 import LoadingIndicator from 'app/components/elements/LoadingIndicator'
-import {reduxForm} from 'redux-form'
+import {reduxForm} from 'redux-form' // @deprecated, instead use: app/utils/ReactForm.js
 import {PrivateKey} from 'shared/ecc'
 import {cleanReduxInput} from 'app/utils/ReduxForms'
 import { translate } from 'app/Translator';
@@ -70,7 +70,7 @@ class KeyEdit extends Component {
             <form onSubmit={handleSubmit(data => onKeyChanged(data))}>
                 <div className="row">
                     <div className={'column small-12' + (password.touched && password.error ? ' error' : '')}>
-                        <label>Change “{authType}” Key (Password or WIF)</label>
+                        <label>Change {authType} Key (Password or WIF)</label>
                         <input ref="key" type="password" {...cleanReduxInput(password)}
                             placeholder="Password or WIF" autoComplete="off" />
                         <span className="error">{password.touched && password.error && password.error}&nbsp;</span>
