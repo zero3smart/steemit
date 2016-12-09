@@ -39,7 +39,7 @@ class PostFull extends React.Component {
     static propTypes = {
         // html props
         /* Show extra options (component is being viewed alone) */
-        global: React.PropTypes.object.isRequired,
+        cont: React.PropTypes.object.isRequired,
         post: React.PropTypes.string.isRequired,
 
         // connector props
@@ -67,7 +67,7 @@ class PostFull extends React.Component {
         }
         this.onDeletePost = () => {
             const {props: {deletePost}} = this
-            const content = this.props.global.get('content').get(this.props.post);
+            const content = this.props.cont.get(this.props.post);
             deletePost(content.get('author'), content.get('permlink'))
         }
     }
@@ -95,7 +95,7 @@ class PostFull extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        const names = 'global, post, username'.split(', ')
+        const names = 'cont, post, username'.split(', ')
         return names.findIndex(name => this.props[name] !== nextProps[name]) !== -1 ||
             this.state !== nextState
     }
@@ -131,7 +131,7 @@ class PostFull extends React.Component {
     }
 
     showPromotePost = () => {
-        const post_content = this.props.global.get('content').get(this.props.post);
+        const post_content = this.props.cont.get(this.props.post);
         if (!post_content) return
         const author = post_content.get('author')
         const permlink = post_content.get('permlink')
@@ -141,7 +141,7 @@ class PostFull extends React.Component {
     render() {
         const {props: {username, post}, state: {PostFullReplyEditor, PostFullEditEditor, formId, showReply, showEdit},
             onShowReply, onShowEdit, onDeletePost} = this
-        const post_content = this.props.global.get('content').get(this.props.post);
+        const post_content = this.props.cont.get(this.props.post);
         if (!post_content) return null;
         const p = extractContent(immutableAccessor, post_content);
         const content = post_content.toJS();
@@ -204,8 +204,12 @@ class PostFull extends React.Component {
         const pending_payout = parsePayoutAmount(content.pending_payout_value);
         const total_payout = parsePayoutAmount(content.total_payout_value);
         const high_quality_post = pending_payout + total_payout > 10.0;
+        const full_power = post_content.get('percent_steem_dollars') === 0;
 
-        let post_header = <h1 className="entry-title">{content.title}</h1>
+        let post_header = <h1 className="entry-title">
+                {content.title}
+                {full_power && <span title="Powered Up 100%"><Icon name="steem" /></span>}
+            </h1>
         if(content.depth > 0) {
             let parent_link = `/${content.category}/@${content.parent_author}/${content.parent_permlink}`;
             let direct_parent_link
