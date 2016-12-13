@@ -27,6 +27,7 @@ import DateJoinWrapper from 'app/components/elements/DateJoinWrapper';
 import { translate } from 'app/Translator';
 import WalletSubMenu from 'app/components/elements/WalletSubMenu';
 import Userpic from 'app/components/elements/Userpic';
+import Callout from 'app/components/elements/Callout';
 import normalizeProfile from 'app/utils/NormalizeProfile';
 
 export default class UserProfile extends React.Component {
@@ -35,6 +36,34 @@ export default class UserProfile extends React.Component {
         this.state = {}
         this.onPrint = () => {window.print()}
         this.loadMore = this.loadMore.bind(this);
+    }
+
+    shouldComponentUpdate(np) {
+        const {follow} = this.props;
+        let followersLoading = false, npFollowersLoading = false;
+        let followingLoading = false, npFollowingLoading = false;
+
+        const account = np.routeParams.accountname.toLowerCase();
+        if (follow) {
+            followersLoading = follow.getIn(['get_followers', account, 'blog', 'loading'], false);
+            followingLoading = follow.getIn(['get_following', account, 'blog', 'loading'], false);
+        }
+        if (np.follow) {
+            npFollowersLoading = np.follow.getIn(['get_followers', account, 'blog', 'loading'], false);
+            npFollowingLoading = np.follow.getIn(['get_following', account, 'blog', 'loading'], false);
+        }
+
+        return (
+            np.current_user !== this.props.current_user ||
+            np.accounts.get(account) !== this.props.accounts.get(account) ||
+            np.wifShown !== this.props.wifShown ||
+            np.global_status !== this.props.global_status ||
+            ((npFollowersLoading !== followersLoading) && !npFollowersLoading) ||
+            ((npFollowingLoading !== followingLoading) && !npFollowingLoading) ||
+            np.loading !== this.props.loading ||
+            np.location.pathname !== this.props.location.pathname ||
+            np.routeParams.accountname !== this.props.routeParams.accountname
+        )
     }
 
     componentWillUnmount() {
@@ -54,14 +83,14 @@ export default class UserProfile extends React.Component {
           default: console.log('unhandled category:', category);
         }
 
-        if (isFetchingOrRecentlyUpdated(this.props.global.get('status'), order, category)) return;
+        if (isFetchingOrRecentlyUpdated(this.props.global_status, order, category)) return;
         const [author, permlink] = last_post.split('/');
         this.props.requestData({author, permlink, order, category, accountname});
     }
 
     render() {
         const {
-            props: {current_user, wifShown},
+            props: {current_user, wifShown, global_status, follow},
             onPrint
         } = this;
         let { accountname, section } = this.props.routeParams;
@@ -76,7 +105,7 @@ export default class UserProfile extends React.Component {
 
         // const isMyAccount = current_user ? current_user.get('username') === accountname : false;
         let account
-        let accountImm = this.props.global.getIn(['accounts', accountname]);
+        let accountImm = this.props.accounts.get(accountname);
         if( accountImm ) {
             account = accountImm.toJS();
         }
@@ -84,36 +113,17 @@ export default class UserProfile extends React.Component {
             return <div><center>{translate('unknown_account')}</center></div>
         }
 
-        let followerCount, followingCount;
-        const followers = this.props.global.getIn( ['follow', 'get_followers', accountname] );
-        const following = this.props.global.getIn( ['follow', 'get_following', accountname] );
-
-        if(followers && followers.has('result') && followers.has('blog')) {
-            const status_followers = followers.get('blog')
-            const followers_loaded = status_followers.get('loading') === false && status_followers.get('error') == null
-            if (followers_loaded) {
-                followerCount = followers.get('result').filter(a => {
-                    return a.get(0) === "blog";
-                }).size;
-            }
-        }
-
-        if (following && following.has('result') && following.has('blog')) {
-            const status_following = following.get('blog')
-            const following_loaded = status_following.get('loading') === false && status_following.get('error') == null
-            if (following_loaded) {
-                followingCount = following.get('result').filter(a => {
-                    return a.get(0) === "blog";
-                }).size;
-            }
-        }
+        const followers = this.props.global.getIn(['follow', 'get_followers', accountname]);
+        const following = this.props.global.getIn(['follow', 'get_following', accountname]);
+        const followerCount = followers && followers.get('blog_count')
+        const followingCount = following && following.get('blog_count')
 
         const rep = repLog10(account.reputation);
 
         const isMyAccount = username === account.name
         let tab_content = null;
 
-        const global_status = this.props.global.get('status');
+        // const global_status = this.props.global.get('status');
         const status = global_status ? global_status.getIn([section, 'by_author']) : null;
         const fetching = (status && status.fetching) || this.props.loading;
 
@@ -129,45 +139,45 @@ export default class UserProfile extends React.Component {
             walletClass = 'active'
             tab_content = <div>
                 <UserWallet global={this.props.global}
-                          account={account}
-                          showTransfer={this.props.showTransfer}
-                          current_user={current_user}
-                          withdrawVesting={this.props.withdrawVesting} />
+                    account={accountImm}
+                    showTransfer={this.props.showTransfer}
+                    current_user={current_user}
+                    withdrawVesting={this.props.withdrawVesting} />
                 {isMyAccount && <div><MarkNotificationRead fields="send,receive" account={account.name} /></div>}
                 </div>;
         }
         else if( section === 'curation-rewards' ) {
             rewardsClass = "active";
-            tab_content = <CurationRewards global={this.props.global}
-                          account={account}
-                          current_user={current_user}
-                          />
+            tab_content = <CurationRewards
+                account={account}
+                current_user={current_user}
+                />
         }
         else if( section === 'author-rewards' ) {
             rewardsClass = "active";
-            tab_content = <AuthorRewards global={this.props.global}
-                          account={account}
-                          current_user={current_user}
-                          />
+            tab_content = <AuthorRewards
+                account={account}
+                current_user={current_user}
+                />
         }
         else if( section === 'followers' ) {
-            if (followers && followers.has('result')) {
+            if (followers && followers.has('blog_result')) {
                 tab_content = <div>
                     <UserList
-                          title={translate('followers')}
-                          account={account}
-                          users={followers} />
+                        title={translate('followers')}
+                        account={account}
+                        users={followers.get('blog_result')} />
                     {isMyAccount && <MarkNotificationRead fields="follow" account={account.name} />}
                     </div>
             }
         }
         else if( section === 'followed' ) {
-            if (following && following.has('result')) {
+            if (following && following.has('blog_result')) {
                 tab_content = <UserList
-                          title="Followed"
-                          account={account}
-                          users={following}
-                          />
+                    title="Followed"
+                    account={account}
+                    users={following.get('blog_result')}
+                    />
             }
         }
         else if( section === 'settings' ) {
@@ -178,49 +188,75 @@ export default class UserProfile extends React.Component {
            //   -- see also GlobalReducer.js
            if( account.posts || account.comments )
            {
-              tab_content = <PostsList
-                  emptyText={translate('user_hasnt_made_any_posts_yet', {name: accountname})}
-                  posts={account.posts || account.comments}
-                  loading={fetching}
-                  category="comments"
-                  loadMore={this.loadMore}
-                  showSpam />;
+                let posts = accountImm.get('posts') || accountImm.get('comments');
+                if (!fetching && (posts && !posts.size)) {
+                    tab_content = <Callout>{translate('user_hasnt_made_any_posts_yet', {name: accountname})}</Callout>;
+                } else {
+                  tab_content = (
+                        <PostsList
+                            posts={posts}
+                            loading={fetching}
+                            category="comments"
+                            loadMore={this.loadMore}
+                            showSpam
+                        />
+                    );
+                }
            }
            else {
               tab_content = (<center><LoadingIndicator type="circle" /></center>);
            }
         } else if(!section || section === 'blog') {
             if (account.blog) {
+                let posts = accountImm.get('blog');
                 const emptyText = isMyAccount ? <div>
                     Looks like you haven't posted anything yet.<br /><br />
                     <Link to="/submit.html">Submit a Story</Link><br />
                     <a href="/steemit/@thecryptofiend/the-missing-faq-a-beginners-guide-to-using-steemit">Read The Beginner's Guide</a><br />
                     <a href="/welcome">Read The Steemit Welcome Guide</a>
                 </div>:
-                    <div>{translate('user_hasnt_started_bloggin_yet', {name: accountname})}</div>;
-                tab_content = <PostsList
-                    emptyText={emptyText}
-                    account={account.name}
-                    posts={account.blog}
-                    loading={fetching}
-                    category="blog"
-                    loadMore={this.loadMore}
-                    showSpam />;
+                    translate('user_hasnt_started_bloggin_yet', {name: accountname});
+
+                if (!fetching && (posts && !posts.size)) {
+                    tab_content = <Callout>{emptyText}</Callout>;
+                } else {
+                    tab_content = (
+                        <PostsList
+                            account={account.name}
+                            posts={posts}
+                            loading={fetching}
+                            category="blog"
+                            loadMore={this.loadMore}
+                            showSpam
+                        />
+                    );
+                }
             } else {
                 tab_content = (<center><LoadingIndicator type="circle" /></center>);
             }
         }
-        else if( (section === 'recent-replies') && account.recent_replies ) {
-              tab_content = <div>
-                  <PostsList
-                  emptyText={translate('user_hasnt_had_any_replies_yet', {name: accountname}) + '.'}
-                  posts={account.recent_replies}
-                  loading={fetching}
-                  category="recent_replies"
-                  loadMore={this.loadMore}
-                  showSpam={false} />
-                  {isMyAccount && <MarkNotificationRead fields="comment_reply" account={accountname} />}
-              </div>;
+        else if( (section === 'recent-replies')) {
+            if (account.recent_replies) {
+                let posts = accountImm.get('recent_replies');
+                if (!fetching && (posts && !posts.size)) {
+                    tab_content = <Callout>{translate('user_hasnt_had_any_replies_yet', {name: accountname}) + '.'}</Callout>;
+                } else {
+                    tab_content = (
+                        <div>
+                            <PostsList
+                                posts={posts}
+                                loading={fetching}
+                                category="recent_replies"
+                                loadMore={this.loadMore}
+                                showSpam={false}
+                            />
+                            {isMyAccount && <MarkNotificationRead fields="comment_reply" account={account.name} />}
+                        </div>
+                    );
+                }
+          } else {
+              tab_content = (<center><LoadingIndicator type="circle" /></center>);
+          }
         }
         else if( section === 'permissions' && isMyAccount ) {
             walletClass = 'active'
@@ -266,7 +302,7 @@ export default class UserProfile extends React.Component {
            }
         }
 
-        const wallet_tab_active = section === 'transfers' || section === 'password' || section === 'permissions' ? 'active' : ''; // className={wallet_tab_active}
+        // const wallet_tab_active = section === 'transfers' || section === 'password' || section === 'permissions' ? 'active' : ''; // className={wallet_tab_active}
 
         let rewardsMenu = [
             {link: `/@${accountname}/curation-rewards`, label: translate('curation_rewards'), value: translate('curation_rewards')},
@@ -282,7 +318,7 @@ export default class UserProfile extends React.Component {
                     <li><Link to={`/@${accountname}`} activeClassName="active">{translate('blog')}</Link></li>
                     <li><Link to={`/@${accountname}/comments`} activeClassName="active">{translate('comments')}</Link></li>
                     <li><Link to={`/@${accountname}/recent-replies`} activeClassName="active">
-                        {translate('replies')} {isMyAccount && <NotifiCounter fields="comment_reply"/>}
+                        {translate('replies')} {isMyAccount && <NotifiCounter fields="comment_reply" />}
                     </Link></li>
                     {/*<li><Link to={`/@${accountname}/feed`} activeClassName="active">Feed</Link></li>*/}
                     <li>
@@ -327,7 +363,7 @@ export default class UserProfile extends React.Component {
                     <div className="column">
                         <div style={{position: "relative"}}>
                             <div className="UserProfile__buttons hide-for-small-only">
-                                <Follow follower={username} following={accountname} what="blog" />
+                                <Follow follower={username} following={accountname} />
                             </div>
                         </div>
 
@@ -352,7 +388,7 @@ export default class UserProfile extends React.Component {
                             <p className="UserProfile__info">
                                 {location && <span><Icon name="location" /> {location}</span>}
                                 {website && <span><Icon name="link" /> <a href={website}>{website_label}</a></span>}
-                                <Icon name="calendar" /> <DateJoinWrapper date={accountjoin}></DateJoinWrapper>
+                                <Icon name="calendar" /> <DateJoinWrapper date={accountjoin} />
                             </p>
                         </div>
                         <div className="UserProfile__buttons_mobile show-for-small-only">
@@ -384,11 +420,13 @@ module.exports = {
 
             return {
                 discussions: state.global.get('discussion_idx'),
-                global: state.global,
                 current_user,
                 // current_account,
                 wifShown,
-                loading: state.app.get('loading')
+                loading: state.app.get('loading'),
+                global_status: state.global.get('status'),
+                accounts: state.global.get('accounts'),
+                follow: state.global.get('follow')
             };
         },
         dispatch => ({
