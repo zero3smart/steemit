@@ -1,14 +1,14 @@
-# Steemit FAQ 
+# Steemit FAQ
 
 ## What is Steemit.com?
 
-**Steemit** is a social network that empowers people for their contributions by rewarding them for their time, effort and creativity through digital points called **Steem**. 
+**Steemit** is a social network that empowers people for their contributions by rewarding them for their time, effort and creativity through digital points called **Steem**.
 
-Steemit has redefined social media by building a living, breathing, growing social economy; a “small town” community where users are getting rewarded for their voice, regardless of race, religion, gender or bias.  
+Steemit has redefined social media by building a living, breathing, growing social economy; a small town community where users are getting rewarded for their voice, regardless of race, religion, gender or bias.
 
 ## What is the Steem blockchain?
 
-Steemit is powered by the Steem blockchain, an open source and publicly accessible database, that records all posts and votes, and distributes rewards across the network. 
+Steemit is powered by the Steem blockchain, an open source and publicly accessible database, that records all posts and votes, and distributes rewards across the network.
 
 ## What can users upload to Steemit?
 
@@ -16,7 +16,7 @@ Steemit users can upload anything they want, whether it be phrases, quotes, anec
 
 ## How does Steemit differ from other social media sites?
 
-Steemit differs entirely from social media giants like Facebook, Reddit and Twitter because it is public and decentralized. Entrepreneurs are beginning to build side apps off the Steem blockchain and we encourage it; through building our thriving community and enhancing the foundation of others, we are changing the way people use and think about the internet. 
+Steemit differs entirely from social media giants like Facebook, Reddit and Twitter because it is public and decentralized. Entrepreneurs are beginning to build side apps off the Steem blockchain and we encourage it; through building our thriving community and enhancing the foundation of others, we are changing the way people use and think about the internet.
 
 ## Who are the Steemit co-founders?
 
@@ -28,7 +28,7 @@ https://www.linkedin.com/in/daniel-larimer-0a367089
 
 ## What is the difference between Steem and Steemit?
 
-Steem is the name of both the database and digital points, which are a form of cryptocurrency that Steemit.com plugs into. 
+Steem is the name of both the database and digital points, which are a form of cryptocurrency that Steemit.com plugs into.
 
 Steemit, Steemit.com and Steemit, Inc. are all names for a privately-owned company and website offering people a secure way to interact with the community network. Steemit is simply an interface to view the blockchain content of Steem.
 
@@ -36,7 +36,7 @@ Steemit, Steemit.com and Steemit, Inc. are all names for a privately-owned compa
 
 You can earn digital points on Steemit by:
 
-**Blogging/Posting** - By sharing your original and unique posts, you can get upvotes by community members. Depending on the upvotes you receive, you will get a portion of that day’s total payout.
+**Blogging/Posting** - By sharing your original and unique posts, you can get upvotes by community members. Depending on the upvotes you receive, you will get a portion of that days total payout.
 
 
 **Curating/Voting** - If you discover a post and upvote it before it becomes popular, you will receive a curation reward. The reward amount will depend on the amount you have vested, called Steem Power.
@@ -45,43 +45,43 @@ You can earn digital points on Steemit by:
 
 Steemit is not a scam. A scam begins with you having to give money to someone else. Steemit is not a middleman to any of the digital points allocations users receive. Steemit doesn't ask you to invest anything.  The Steem blockchain and points system is entirely its own entity, similar to Bitcoin, and it should be treated with a high level of due diligence for anyone looking to leverage its digital points as cryptocurrency.
 
-The Steemit team is extremely proud of what has been accomplished building on top of Steem and they are excited about what they’re continuing to build. Any insinuation that they’re doing something improper is abjectly false. Steemit’s blockchain-based transparency is essentially unprecedented in the history of social media networks, including those valued at tens of billions of dollars. 
+The Steemit team is extremely proud of what has been accomplished building on top of Steem and they are excited about what theyre continuing to build. Any insinuation that theyre doing something improper is abjectly false. Steemits blockchain-based transparency is essentially unprecedented in the history of social media networks, including those valued at tens of billions of dollars.
 
-Steem is based on years of research and development into blockchain technology and built by a team with more than 15+ years combined experience working on blockchain protocols and dapps. Steemit is deeply committed to delivering continuous improvement to the platform now and well into the future. 
+Steem is based on years of research and development into blockchain technology and built by a team with more than 15+ years combined experience working on blockchain protocols and dapps. Steemit is deeply committed to delivering continuous improvement to the platform now and well into the future.
 
-Given the long term vision and the further growth it expects, Steemit was designed to leverage a blockchain that has deliberate mechanisms in place to prevent unexpected abandonment of the digital points. The blockchain’s built-in processes on its public, transparent ledger ensure that authors are rewarded for their contribution in Steem Power, Steem and Steem Dollars. 
+Given the long term vision and the further growth it expects, Steemit was designed to leverage a blockchain that has deliberate mechanisms in place to prevent unexpected abandonment of the digital points. The blockchains built-in processes on its public, transparent ledger ensure that authors are rewarded for their contribution in Steem Power, Steem and Steem Dollars.
 
-The founders of Steemit currently own about half of the Steem supply. They are publicly committed to reducing their percentage ownership by distributing Steemit’s digital points as means for covering costs of scaling, operations and signing new users up the platform. 
+The founders of Steemit currently own about half of the Steem supply. They are publicly committed to reducing their percentage ownership by distributing Steemits digital points as means for covering costs of scaling, operations and signing new users up the platform.
 
 ## How does Steemit respond to public criticism?
 
 Steemit is 100% committed to building the Steemit platform and contributing to Steem wherever possible. With new and disruptive technologies, critics are to be expected, but we believe the issue stems from lack of education.  The Steemit founders openly address criticisms in several podcasts. In regards to founding ownership, Dan and Ned have sold a very small % of their holdings and the @steemit account only powers down to prepare for engagements that fund operations, marketing and development.
 
-The Steemit founders respect people’s right to freedom of speech and their own opinions, but they encourage self-education and research on cutting edge concepts in decentralized social media. 
+The Steemit founders respect peoples right to freedom of speech and their own opinions, but they encourage self-education and research on cutting edge concepts in decentralized social media.
 
 ## Where does the value come from?
 
-At its root, Steem is simply a points system similar to other arcade style points systems, however, because this points system is blockchain based, the points are traded on cryptocurrency markets.  The speculation that occurs on these markets makes the value of the points transparent to everyone who uses Steem-based applications, such as Steemit. 
+At its root, Steem is simply a points system similar to other arcade style points systems, however, because this points system is blockchain based, the points are traded on cryptocurrency markets.  The speculation that occurs on these markets makes the value of the points transparent to everyone who uses Steem-based applications, such as Steemit.
 
 
 Steem uses pre-determined mathematical formulas to determine how many new points it will issue to users each day, and the Steem network continually creates digital points to reward content creators and curators (for voting on blog posts) at this set and specific rate. Some of the newly-created points are transferred to users who add value to Steemit by blogging, commenting, and voting on other people's blog posts. The remainder is distributed to holders of Steem Power to protect them from dilution.
 
 
-By analogy, Steem is a game system for content, where the rewards people earn are video game tokens that have real market value and are readily tradable for Bitcoin and USD. It is similar to how someone playing a video game could obtain a rare item by playing the game. If they have the scarce item, then they could potentially sell it on video game item markets. 
+By analogy, Steem is a game system for content, where the rewards people earn are video game tokens that have real market value and are readily tradable for Bitcoin and USD. It is similar to how someone playing a video game could obtain a rare item by playing the game. If they have the scarce item, then they could potentially sell it on video game item markets.
 
 ## What is the difference between Steem, Steem Power, and Steem Dollars?
 
-**Steem**, **Steem Power** and **Steem Dollars** are the three forms of digital points plugged into the Steem blockchain: 
+**Steem**, **Steem Power** and **Steem Dollars** are the three forms of digital points plugged into the Steem blockchain:
 
-**Steem** - Steem is the most liquid form of currency in the platform. Steem can be converted into Steem Power, Steem Dollars, or traded. 
+**Steem** - Steem is the most liquid form of currency in the platform. Steem can be converted into Steem Power, Steem Dollars, or traded.
 
-**Steem Power** - Steem Power is a measurement of how much influence a user can wield via Steemit. The more Steem Power a user holds, the more they may influence the value of the content on the network. It is important to note when a user decides to “Power Down” Steem Power, they will receive equal distributions of the Steem Power as Steem over 104 weeks. 
+**Steem Power** - Steem Power is a measurement of how much influence a user can wield via Steemit. The more Steem Power a user holds, the more they may influence the value of the content on the network. It is important to note when a user decides to Power Down Steem Power, they will receive equal distributions of the Steem Power as Steem over 13 weeks.
 
-**Steem Dollars** - Steem Dollars are a blockchain and market powered token designed to be pegged to $1 USD. Steem Dollars may be turned into STEEM before they can be “Powered Up” into Steem Power. Steem Dollars may also be used to buy things in marketplaces, such as Steemit.com and PeerHub.com.
+**Steem Dollars** - Steem Dollars are a blockchain and market powered token designed to be pegged to $1 USD. Steem Dollars may be turned into STEEM before they can be Powered Up into Steem Power. Steem Dollars may also be used to buy things in marketplaces, such as Steemit.com and PeerHub.com.
 
 ## What is Powering Down and Powering Up?
 
-**Powering Down** - If you have Steem Power, you can begin to Power Down to obtain Steem. The system will transfer 1/104 of your Steem Power, to Steem each week for two years (104 weeks). 
+**Powering Down** - If you have Steem Power, you can begin to Power Down to obtain Steem. The system will transfer 1/13 of your Steem Power, to Steem each week for three months (13 weeks).
 
 **Powering Up** - If you wish to gain more influence in the Steem network, you must increase your Steem Power. Powering Up is the process of instantaneously turning your Steem into Steem Power.
 
@@ -92,7 +92,7 @@ Over time, Steemit will allow advertisers and bloggers to promote content by buy
 
 ## Will I get a 1099 from Steemit?
 
-No, you are not being paid by Steemit. The Steem network pays you. It is your responsibility to determine what, if any, taxes apply to the transactions you make, and it is your responsibility to report and remit the correct tax to the appropriate tax authority. By creating an account, you agree that Steemit is not responsible for determining whether taxes apply to your Steem transactions or for collecting, reporting, withholding, or remitting any taxes arising from any Steem transactions.   
+No, you are not being paid by Steemit. The Steem network pays you. It is your responsibility to determine what, if any, taxes apply to the transactions you make, and it is your responsibility to report and remit the correct tax to the appropriate tax authority. By creating an account, you agree that Steemit is not responsible for determining whether taxes apply to your Steem transactions or for collecting, reporting, withholding, or remitting any taxes arising from any Steem transactions.
 
 ## Is Steemit decentralized? What about Steem?
 
@@ -103,7 +103,7 @@ Steem as a blockchain is more decentralized than Steemit.com. Steemit, Inc. as a
 Steem is 100% open-source and is the essential API for all data used by sites such as Steemit.com
 https://steemit.com/steemjs/@fabien/steem-api-now-released
 
-## What is available for developers interested in Steem and Steemit? 
+## What is available for developers interested in Steem and Steemit?
 
 Many software engineers are currently leveraging the open-source code to build their applications on Steem. There are more than sixty so far.
 https://github.com/steemit/steem
@@ -115,11 +115,11 @@ http://steemtools.com/
 
 ## Are my Steem and Steem Dollar tokens insured in the event of a hack or if someone takes over my account?
 
-No, it is not. If your money is in Steem Power, however, it is impossible for a hacker to take out more than 1/104 per week.
+No, it is not. If your money is in Steem Power, however, it is impossible for a hacker to take out more than 1/13 per week.
 
-## How do I set my recovery account? 
+## How do I set my recovery account?
 
-How does one setup the “trusted individual” who can identify you independently of your key?
+How does one setup the trusted individual who can identify you independently of your key?
 https://steemit.com/blockchain/@dan/steemit-releases-groundbreaking-account-recovery-solution
 
 ## How does the recovery process work? What should I do first if I discover that someone hacked my account?
@@ -139,11 +139,11 @@ https://steemit.com/blockchain/@dan/steemit-releases-groundbreaking-account-reco
 
 ## What are Steem witnesses?
 
-The community also elected 'witnesses' to act as Steem’s governance body, making decisions on improving the platform and preventing early adopters who may attempt to make unfair financial gain.
+The community also elected 'witnesses' to act as Steems governance body, making decisions on improving the platform and preventing early adopters who may attempt to make unfair financial gain.
 
 The Steem blockchain requires a set of people to create blocks and uses a consensus mechanism called Delegated Proof of Stake, or DPOS, in combination with Proof of Work. The people delegated to create these blocks are called witnesses and miners.
 
-Steemit leverages Steem because the founders of Steemit believe Steem’s decentralized governance model makes Steem an excellent platform for supporting long term success of its social network and digital points.
+Steemit leverages Steem because the founders of Steemit believe Steems decentralized governance model makes Steem an excellent platform for supporting long term success of its social network and digital points.
 
 ## How can I vote for witnesses?
 
