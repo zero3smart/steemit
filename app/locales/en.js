@@ -31,7 +31,7 @@ const en = 	{
 	// next 5 strings were supposed to be sinngle block of text, but due large size,
 	// code erros they were splitted.
 	authors_get_paid_when_people_like_you_upvote_their_post: 'Authors get paid when people like you upvote their post',
-	if_you_enjoyed_what_you_read_earn_amount: 'If you enjoyed what you read here, earn {amount} ' + VESTING_TOKEN,
+	if_you_enjoyed_what_you_read_earn_amount: 'If you enjoyed what you read here, earn {amount} of ' + VESTING_TOKEN,
 	when_you: "when you",
 	when_you_link_text: 'Sign Up',
 	and_vote_for_it: 'and vote for it',
@@ -40,7 +40,7 @@ const en = 	{
 	submit_email_to_get_on_waiting_list: 'Submit your email to get on the waiting list',
 	login: 'Login',
 	logout: 'Logout',
-	show_less_low_value_posts: "Show less low value posts",
+	show_less_low_value_posts: "Show fewer low value posts",
 	show_more_low_value_posts: "Show more low value posts",
 	select_topic: 'Select Topic',
 	tags_and_topics: "Tags and Topics",
@@ -266,7 +266,7 @@ const en = 	{
 	account_recovery_request_not_confirmed: "Account recovery request is not confirmed yet, please get back later, thank you for your patience.",
 	vote: 'Vote', // context: to vote? (title attribute on voting button)
 	witness: 'Witness',
-	top_witnesses: 'Top Witnesses',
+	top_witnesses: 'Witness Voting',
 	// user's navigational menu
 	feed: 'Feed',
 	wallet: 'Wallet',
@@ -394,6 +394,12 @@ const en = 	{
 		other {{votesCount} votes}
 	} remaining`,
 	you_can_vote_for_maximum_of_witnesses: 'You can vote for a maximum of 30 witnesses',
+	set_witness_proxy: "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
+	witness_set: "You have set a voting proxy. If you would like to reenable manual voting, please clear your proxy.",
+	witness_proxy_current: "Your current proxy is",
+	witness_proxy_set: "Set proxy",
+	witness_proxy_clear: "Clear proxy",
+	proxy_update_error: "Your proxy was not updated",
 	information: 'Information',
 	if_you_want_to_vote_outside_of_top_enter_account_name: 'If you would like to vote for a witness outside of the top 50, enter the account name below to cast a vote',
 	view_the_direct_parent: 'View the direct parent',
@@ -504,7 +510,7 @@ const en = 	{
 	dismiss: 'Dismiss',
 	// next 3 strings are used conditionally together
 	show_more: 'Show more',
-	show_less: 'Show less',
+	show_less: 'Show fewer',
 	value_posts: 'low value posts',
 	// PormotePost.jsx
 	promote_post: 'Promote Post',
