@@ -27,7 +27,6 @@ export default class Follow extends React.Component {
 
     constructor(props) {
         super()
-        this.state = {}
         this.initEvents(props)
         this.shouldComponentUpdate = shouldComponentUpdate(this, 'Follow')
     }
@@ -38,16 +37,10 @@ export default class Follow extends React.Component {
 
     initEvents(props) {
         const {updateFollow, follower, following} = props
-        const upd = type => {
-            if(this.state.busy) return;
-            this.setState({busy: true})
-            const done = () => {this.setState({busy: false})}
-            updateFollow(follower, following, type, done)
-        }
-        this.follow = () => {upd('blog')}
-        this.unfollow = () => {upd()}
-        this.ignore = () => {upd('ignore')}
-        this.unignore = () => {upd()}
+        this.follow = () => {updateFollow(follower, following, 'blog')}
+        this.unfollow = () => {updateFollow(follower, following)}
+        this.ignore = () => {updateFollow(follower, following, 'ignore')}
+        this.unignore = () => {updateFollow(follower, following)}
     }
 
     render() {
@@ -64,11 +57,9 @@ export default class Follow extends React.Component {
 
         const {followingWhat} = this.props // redux
         const {showFollow, showMute, fat, children} = this.props // html
-        const {busy} = this.state
 
-        const cnBusy = busy ? 'disabled' : ''
         const cnActive = 'button' + (fat ? '' : ' slim')
-        const cnInactive = cnActive + ' hollow secondary ' + cnBusy
+        const cnInactive = cnActive + ' hollow secondary'
         return <span>
             {showFollow && followingWhat !== 'blog' &&
                 <label className={cnInactive} onClick={this.follow}>{translate('follow')}</label>}
@@ -114,7 +105,7 @@ module.exports = connect(
         };
     },
     dispatch => ({
-        updateFollow: (follower, following, action, done) => {
+        updateFollow: (follower, following, action) => {
             const what = action ? [action] : []
             const json = ['follow', {follower, following, what}]
             dispatch(transaction.actions.broadcastOperation({
@@ -124,8 +115,6 @@ module.exports = connect(
                     required_posting_auths: [follower],
                     json: JSON.stringify(json),
                 },
-                successCallback: done,
-                errorCallback: done,
             }))
         },
     })

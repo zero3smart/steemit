@@ -5,7 +5,7 @@ import {createTransaction, signTransaction} from 'shared/chain/transactions'
 import {ops} from 'shared/serializer'
 import {PublicKey, PrivateKey} from 'shared/ecc'
 import {fromJS, Set, Map} from 'immutable'
-import {getAccount, getContent} from 'app/redux/SagaShared'
+import {getAccount} from 'app/redux/SagaShared'
 import {findSigningKey} from 'app/redux/AuthSaga'
 import {encode} from 'shared/chain/memo'
 import g from 'app/redux/GlobalReducer'
@@ -154,8 +154,7 @@ function* broadcastOperation({payload:
             }
         }
         yield call(broadcast, {payload})
-        let eventType = type.replace(/^([a-z])/, g => g.toUpperCase()).replace(/_([a-z])/g, g => g[1].toUpperCase());
-        if (eventType === 'Comment' && !operation.parent_author) eventType = 'Post';
+        const eventType = type.replace(/^([a-z])/, g => g.toUpperCase()).replace(/_([a-z])/g, g => g[1].toUpperCase());
         serverApiRecordEvent(eventType, '')
     } catch(error) {
         console.error('TransactionSage', error)
@@ -472,6 +471,14 @@ function slug(text) {
     //    .replace(/[^a-zA-Z0-9-_]+/g, '') // only letters and numbers _ and -
     //    .replace(/--/g, '-')
     //    .toLowerCase()
+}
+
+function* getContent({author, permlink}) {
+    const content = yield call([Apis, Apis.db_api], 'get_content', author, permlink)
+    yield put(g.actions.receiveContent({content}))
+    // const update = {content: {}}
+    // update.content[author + '/' + permlink] = content
+    // yield put(g.actions.receiveState(update))
 }
 
 function* recoverAccount({payload: {account_to_recover, old_password, new_password, onError, onSuccess}}) {

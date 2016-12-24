@@ -45,12 +45,12 @@ export default class UserProfile extends React.Component {
 
         const account = np.routeParams.accountname.toLowerCase();
         if (follow) {
-            followersLoading = follow.getIn(['get_followers', account, 'blog_loading'], false);
-            followingLoading = follow.getIn(['get_following', account, 'blog_loading'], false);
+            followersLoading = follow.getIn(['get_followers', account, 'blog', 'loading'], false);
+            followingLoading = follow.getIn(['get_following', account, 'blog', 'loading'], false);
         }
         if (np.follow) {
-            npFollowersLoading = np.follow.getIn(['get_followers', account, 'blog_loading'], false);
-            npFollowingLoading = np.follow.getIn(['get_following', account, 'blog_loading'], false);
+            npFollowersLoading = np.follow.getIn(['get_followers', account, 'blog', 'loading'], false);
+            npFollowingLoading = np.follow.getIn(['get_following', account, 'blog', 'loading'], false);
         }
 
         return (
@@ -104,23 +104,17 @@ export default class UserProfile extends React.Component {
         if( section == 'posts' ) section = 'comments';
 
         // const isMyAccount = current_user ? current_user.get('username') === accountname : false;
-
-        // Loading status
-        const status = global_status ? global_status.getIn([section, 'by_author']) : null;
-        const fetching = (status && status.fetching) || this.props.loading;
-
         let account
         let accountImm = this.props.accounts.get(accountname);
         if( accountImm ) {
             account = accountImm.toJS();
-        } else if (fetching) {
-            return <center><LoadingIndicator type="circle" /></center>;
-        } else {
+        }
+        else {
             return <div><center>{translate('unknown_account')}</center></div>
         }
 
-        const followers = follow && follow.getIn(['get_followers', accountname]);
-        const following = follow && follow.getIn(['get_following', accountname]);
+        const followers = this.props.global.getIn(['follow', 'get_followers', accountname]);
+        const following = this.props.global.getIn(['follow', 'get_following', accountname]);
         const followerCount = followers && followers.get('blog_count')
         const followingCount = following && following.get('blog_count')
 
@@ -130,7 +124,8 @@ export default class UserProfile extends React.Component {
         let tab_content = null;
 
         // const global_status = this.props.global.get('status');
-
+        const status = global_status ? global_status.getIn([section, 'by_author']) : null;
+        const fetching = (status && status.fetching) || this.props.loading;
 
         // let balance_steem = parseFloat(account.balance.split(' ')[0]);
         // let vesting_steem = vestingSteem(account, gprops).toFixed(2);
@@ -143,7 +138,7 @@ export default class UserProfile extends React.Component {
         if( section === 'transfers' ) {
             walletClass = 'active'
             tab_content = <div>
-                <UserWallet
+                <UserWallet global={this.props.global}
                     account={accountImm}
                     showTransfer={this.props.showTransfer}
                     current_user={current_user}
@@ -189,7 +184,9 @@ export default class UserProfile extends React.Component {
             tab_content = <Settings routeParams={this.props.routeParams} />
         }
         else if( section === 'comments' && account.post_history ) {
-           if( account.comments )
+           // NOTE: `posts` key will be renamed to `comments` (https://github.com/steemit/steem/issues/507)
+           //   -- see also GlobalReducer.js
+           if( account.posts || account.comments )
            {
                 let posts = accountImm.get('posts') || accountImm.get('comments');
                 if (!fetching && (posts && !posts.size)) {
