@@ -1,5 +1,5 @@
-import {fromJS, Map, Set} from 'immutable'
-import {call, put, select} from 'redux-saga/effects';
+import {fromJS, Map, Set, List} from 'immutable'
+import {call, put} from 'redux-saga/effects';
 import {Apis} from 'shared/api_client';
 
 /**
@@ -7,75 +7,54 @@ import {Apis} from 'shared/api_client';
 */
 
 // Test limit with 2 (not 1, infinate looping)
-export function* loadFollows(method, account, type, force = false) {
-    if(yield select(state => state.global.getIn(['follow', method, account, type + '_loading']))) {
-        // console.log('Already loading', method, account, type)
-        return
-    }
-
-    if(!force) {
-        const hasResult = yield select(state => state.global.hasIn(['follow', method, account, type + '_result']))
-        if(hasResult) {
-            // console.log('Already loaded', method, account, type)
-            return
-        }
-    }
-
-    yield put({type: 'global/UPDATE', payload: {
-        key: ['follow', method, account],
-        notSet: Map(),
-        updater: m => m.set(type + '_loading', true),
-    }})
-
-    yield loadFollowsLoop(method, account, type)
-}
-
-function* loadFollowsLoop(method, account, type, start = '', limit = 100) {
+export function* loadFollows(method, account, type, start = '', limit = 100) {
     const res = fromJS(yield Apis.follow(method, account, start, type, limit))
     // console.log('res.toJS()', res.toJS())
 
     let cnt = 0
     let lastAccountName = null
+    const accountNameKey = method === "get_following" ? "following" : "follower";
 
     yield put({type: 'global/UPDATE', payload: {
-        key: ['follow_inprogress', method, account],
+        key: ['follow', method, account],
         notSet: Map(),
         updater: m => {
             m = m.asMutable()
             res.forEach(value => {
                 cnt++
 
-                const whatList = value.get('what')
-                const accountNameKey = method === "get_following" ? "following" : "follower";
+                let whatList = value.get('what')
+                if(typeof whatList === 'string')
+                    whatList = new List([whatList]) // TODO: after shared-db upgrade, this line can be removed
+
                 const accountName = lastAccountName = value.get(accountNameKey)
                 whatList.forEach(what => {
                     //currently this is always true: what === type
-                    m.update(what, Set(), s => s.add(accountName))
+                    m.update(what + '_loading', Set(), s => s.add(accountName))
                 })
             })
+            m.merge({[type]: {loading: true, error: null}})
             return m.asImmutable()
         }
     }})
 
     if(cnt === limit) {
         // This is paging each block of up to limit results
-        yield call(loadFollowsLoop, method, account, type, lastAccountName)
+        yield call(loadFollows, method, account, type, lastAccountName)
     } else {
         // This condition happens only once at the very end of the list.
         // Every account has a different followers and following list for: blog, ignore
         yield put({type: 'global/UPDATE', payload: {
-            key: [],
+            key: ['follow', method, account],
             updater: m => {
                 m = m.asMutable()
-
-                const result = m.getIn(['follow_inprogress', method, account, type], Set())
-                m.deleteIn(['follow_inprogress', method, account, type])
-                m.updateIn(['follow', method, account], Map(), mm => mm.merge({
-                    // Count may be set separately without loading the full xxx_result set
+                const result = m.get(type + '_loading')
+                m.delete(type + '_loading')
+                m.merge({
                     [type + '_count']: result.size,
-                    [type + '_result']: result.sort().reverse(),
-                    [type + '_loading']: false,
-                }))
+                    [type + '_result']: result,
+                    [type]: {loading: false, error: null},
+                })
                 return m.asImmutable()
             }
         }})
