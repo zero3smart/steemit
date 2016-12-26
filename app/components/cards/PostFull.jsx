@@ -238,11 +238,11 @@ class PostFull extends React.Component {
         }
 
         const readonly = post_content.get('mode') === 'archived' || $STM_Config.read_only_mode
-        const showPromote = username && post_content.get('mode') === "first_payout" && post_content.get('depth') == 0
+        //const showPromote = username && post_content.get('mode') === "first_payout" && post_content.get('depth') == 0
+        const showPromote = false // TODO: revert when nodes are updated with https://github.com/steemit/steem/pull/550
         const showReplyOption = post_content.get('depth') < 6
         const showEditOption = username === author
         const authorRepLog10 = repLog10(content.author_reputation)
-        const isPreViewCount = Date.parse(post_content.get('created')) < 1480723200000 // check if post was created before view-count tracking began (2016-12-03)
 
         return (
             <article className="PostFull hentry" itemScope itemType="http://schema.org/blogPost">
@@ -267,23 +267,25 @@ class PostFull extends React.Component {
                         <TimeAuthorCategory content={content} authorRepLog10={authorRepLog10} />
                         <Voting post={post} />
                     </div>
-                    <div className="right-sub-menu small-10 medium-5 large-5 columns text-right">
-                        {!readonly && <Reblog author={author} permlink={permlink} />}
-                        {!readonly &&
-                            <span className="PostFull__reply">
-                                {showReplyOption && <a onClick={onShowReply}>Reply</a>}
-                                {' '}{showEditOption   && !showEdit  && <a onClick={onShowEdit}>Edit</a>}
-                                {' '}{showDeleteOption && !showReply && <a onClick={onDeletePost}>Delete</a>}
-                            </span>}
-                        <span className="PostFull__responses">
-                            <Link to={link} title={pluralize('Responses', content.children, true)}>
-                                <Icon name="chatboxes" className="space-right" />{content.children}
-                            </Link>
-                        </span>
-                        <span className="PostFull__views">
-                            <PageViewsCounter hidden={false} sinceDate={isPreViewCount ? 'Dec 2016' : null} />
-                        </span>
-                        <ShareMenu menu={share_menu} />
+                    <div className="small-10 medium-6 large-5 columns text-right">
+                            <div className="">
+                            {!readonly && <Reblog author={author} permlink={permlink} />}
+                            {!readonly &&
+                                <span className="PostFull__reply">
+                                    {showReplyOption && <a onClick={onShowReply}>Reply</a>}
+                                    {' '}{showEditOption   && !showEdit  && <a onClick={onShowEdit}>Edit</a>}
+                                    {' '}{showDeleteOption && !showReply && <a onClick={onDeletePost}>Delete</a>}
+                                </span>}
+                            <span className="PostFull__responses">
+                                <Link to={link} title={pluralize('Responses', content.children, true)}>
+                                    <Icon name="chatboxes" className="space-right" />{content.children}
+                                </Link>
+                            </span>
+                            <span className="PostFull__views">
+                                <PageViewsCounter hidden={false} />
+                            </span>
+                            <ShareMenu menu={share_menu} />
+                            </div>
                     </div>
                 </div>
                 <div className="row">
