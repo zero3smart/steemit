@@ -26,8 +26,11 @@ export function* fetchState(location_change_action) {
     const m = pathname.match(/^\/@([a-z0-9\.-]+)/)
     if(m && m.length === 2) {
         const username = m[1]
-        yield fork(loadFollows, "get_followers", username, 'blog')
-        yield fork(loadFollows, "get_following", username, 'blog')
+        const hasFollows = yield select(state => state.global.hasIn(['follow', 'get_followers', username]))
+        if(!hasFollows) {
+            yield fork(loadFollows, "get_followers", username, 'blog')
+            yield fork(loadFollows, "get_following", username, 'blog')
+        }
     }
     const server_location = yield select(state => state.offchain.get('server_location'));
     if (pathname === server_location) return;
