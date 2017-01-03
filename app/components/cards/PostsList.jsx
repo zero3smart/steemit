@@ -151,13 +151,14 @@ class PostsList extends React.Component {
     onPostClick(post, url) {
         this.post_url = url;
         this.props.fetchState(url);
+        this.props.removeHighSecurityKeys();
         this.setState({showPost: post, prevTitle: window.document.title});
         window.history.pushState({}, '', url);
     }
 
     render() {
         const {posts, showSpam, loading, category, content,
-            ignore_result, account} = this.props;
+            follow, account} = this.props;
         const {thumbSize, showPost} = this.state
         const postsInfo = [];
         posts.forEach(item => {
@@ -166,13 +167,13 @@ class PostsList extends React.Component {
                 console.error('PostsList --> Missing cont key', item)
                 return
             }
-            const ignore = ignore_result.has(cont.get('author'))
-            if(ignore) console.log('ignored post by', content.get('author'), '\t', item)
-
+            const key = [cont.get('author')]
+            const ignore = follow ? follow.getIn(key, List()).contains('ignore') : false
             const {hide, netVoteSign, authorRepLog10} = cont.get('stats').toJS()
             if(!(ignore || hide) || showSpam) // rephide
                 postsInfo.push({item, ignore, netVoteSign, authorRepLog10})
         });
+
         const renderSummary = items => items.map(item => <li key={item.item}>
             <PostSummary
                 account={account}
@@ -219,12 +220,15 @@ export default connect(
         const current = state.user.get('current')
         const username = current ? current.get('username') : null
         const content = state.global.get('content');
-        const ignore_result = state.global.getIn(['follow', 'get_following', username, 'ignore_result']);
-        return {...props, username, content, ignore_result, pathname};
+        const follow = state.global.getIn(['follow', 'get_following', username, 'result']);
+        return {...props, username, content, follow, pathname};
     },
     dispatch => ({
         fetchState: (pathname) => {
             dispatch({type: 'FETCH_STATE', payload: {pathname}})
+        },
+        removeHighSecurityKeys: () => {
+            dispatch({type: 'user/REMOVE_HIGH_SECURITY_KEYS'})
         }
     })
 )(PostsList)
