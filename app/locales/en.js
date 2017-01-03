@@ -31,7 +31,7 @@ const en = 	{
 	// next 5 strings were supposed to be sinngle block of text, but due large size,
 	// code erros they were splitted.
 	authors_get_paid_when_people_like_you_upvote_their_post: 'Authors get paid when people like you upvote their post',
-	if_you_enjoyed_what_you_read_earn_amount: 'If you enjoyed what you read here, earn {amount} of ' + VESTING_TOKEN,
+	if_you_enjoyed_what_you_read_earn_amount: 'If you enjoyed what you read here, earn {amount} ' + VESTING_TOKEN,
 	when_you: "when you",
 	when_you_link_text: 'Sign Up',
 	and_vote_for_it: 'and vote for it',
@@ -40,7 +40,7 @@ const en = 	{
 	submit_email_to_get_on_waiting_list: 'Submit your email to get on the waiting list',
 	login: 'Login',
 	logout: 'Logout',
-	show_less_low_value_posts: "Show fewer low value posts",
+	show_less_low_value_posts: "Show less low value posts",
 	show_more_low_value_posts: "Show more low value posts",
 	select_topic: 'Select Topic',
 	tags_and_topics: "Tags and Topics",
@@ -212,9 +212,7 @@ const en = 	{
 	convert: 'Convert',
 	invalid_amount: 'Invalid amount',
 	insufficent_balance: 'Insufficient balance',
-	in_week_convert_DEBT_TOKEN_to_LIQUID_TOKEN: 'In 3.5 days, convert {amount} ' + DEBT_TOKEN + ' into ' + LIQUID_TOKEN,
-	in_conversion: "{amount} in conversion",
-	conversion_complete_tip: "Will complete on",
+	in_week_convert_DEBT_TOKEN_to_LIQUID_TOKEN: 'In 3.5 days, convert {amount} ' + DEBT_TOKEN + 's into ' + LIQUID_TOKEN,
 	order_placed: 'Order placed', // ex.: "Order placed: Sell {someamount_to_sell} for atleast {min_to_receive}"
 	follow: 'Follow',
 	unfollow: 'Unfollow',
@@ -266,7 +264,7 @@ const en = 	{
 	account_recovery_request_not_confirmed: "Account recovery request is not confirmed yet, please get back later, thank you for your patience.",
 	vote: 'Vote', // context: to vote? (title attribute on voting button)
 	witness: 'Witness',
-	top_witnesses: 'Witness Voting',
+	top_witnesses: 'Top Witnesses',
 	// user's navigational menu
 	feed: 'Feed',
 	wallet: 'Wallet',
@@ -388,18 +386,8 @@ const en = 	{
 	action: 'Action',
 	APP_NAME_app_center: APP_NAME + ' App Center',
 	witness_thread: 'witness thread',
-	you_have_votes_remaining: `You have {votesCount, plural,
-		=0 {no votes}
-		one {1 vote}
-		other {{votesCount} votes}
-	} remaining`,
+	you_have_votes_remaining: 'You have {votesCount} votes remaining',
 	you_can_vote_for_maximum_of_witnesses: 'You can vote for a maximum of 30 witnesses',
-	set_witness_proxy: "You can also choose a proxy that will vote for witnesses for you. This will reset your current witness selection.",
-	witness_set: "You have set a voting proxy. If you would like to reenable manual voting, please clear your proxy.",
-	witness_proxy_current: "Your current proxy is",
-	witness_proxy_set: "Set proxy",
-	witness_proxy_clear: "Clear proxy",
-	proxy_update_error: "Your proxy was not updated",
 	information: 'Information',
 	if_you_want_to_vote_outside_of_top_enter_account_name: 'If you would like to vote for a witness outside of the top 50, enter the account name below to cast a vote',
 	view_the_direct_parent: 'View the direct parent',
@@ -510,12 +498,12 @@ const en = 	{
 	dismiss: 'Dismiss',
 	// next 3 strings are used conditionally together
 	show_more: 'Show more',
-	show_less: 'Show fewer',
+	show_less: 'Show less',
 	value_posts: 'low value posts',
 	// PormotePost.jsx
 	promote_post: 'Promote Post',
 	spend_your_DEBT_TOKEN_to_advertise_this_post: 'Spend your ' + DEBT_TOKEN + 's to advertise this post in the promoted content section',
-	you_successfully_promoted_this_post: 'You successfully promoted this post',
+	you_successdully_promoted_this_post: 'You successfully promoted this post',
 	leave_this_unchecked_to_receive_half_your_reward: "Leave this unchecked to receive 1/2 your reward in " + VESTING_TOKEN + " and 1/2 in " + DEBT_TOKEN,
 	pay_me_100_in_VESTING_TOKEN: 'Pay me 100% in ' + VESTING_TOKEN,
 	requires_5_or_more_reddit_comment_karma: 'requires 5 or more Reddit comment karma',
