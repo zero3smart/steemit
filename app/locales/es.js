@@ -10,7 +10,7 @@ const es = 	{
 	stolen_account_recovery: "Recuperación de Cuentas Robadas",
 	change_account_password: "Cambiar Contraseña",
 	steemit_chat: "Chat de Steemit",
-    steemit_api_docs: "Steemit API Docs",
+	steemit_api_docs: "Steemit API Docs",
 	witnesses: "Testigos",
 	vote_for_witnesses: "Votar por Testigos",
 	privacy_policy: "Política de Privacidad",
@@ -30,7 +30,7 @@ const es = 	{
 	submit_email_to_get_on_waiting_list: 'Submit your email to get on the waiting list',
 	login: 'Entrar',
 	logout: 'Salir',
-	show_less_low_value_posts: "Show less low value posts",
+	show_less_low_value_posts: "Show fewer low value posts",
 	show_more_low_value_posts: "Show more low value posts",
 	select_topic: 'Seleccionar Tópicos',
 	tags_and_topics: "Tags y Tópicos",
@@ -188,13 +188,13 @@ const es = 	{
 	i_understand_dont_show_again: "I understand, don't show me again",
 	ok: 'Ok',
 	convert_to_steem: 'Convertir a Steem',
-	steem_dollars_will_be_unavailable: 'This action will take place one week from now and can not be canceled. These Steem Dollars will immediatly become unavailable',
+	steem_dollars_will_be_unavailable: 'This action will take place 3.5 days from now and can not be canceled. These Steem Dollars will immediatly become unavailable',
 	amount: 'Cantidad',
 	steem_dollars: 'STEEM DOLLARS',
 	convert: 'Convertir',
 	invalid_amount: 'Invalid amount',
 	insufficent_balance: 'Balance insuficiente',
-	in_week_convert_steem_dollars_to_steem: 'In one week, convert {amount} STEEM DOLLARS into STEEM',
+	in_week_convert_steem_dollars_to_steem: 'In 3.5 days, convert {amount} STEEM DOLLARS into STEEM',
 	order_placed: 'Order placed', // ex.: "Order placed: Sell {someamount_to_sell} for atleast {min_to_receive}"
 	follow: 'Seguir',
 	unfollow: 'No seguir',
@@ -223,6 +223,10 @@ const es = 	{
 	open_orders: 'Ordenes abiertas',
 	sell_amount_for_atleast: 'Sell {amount_to_sell} for at least {min_to_receive} ({effectivePrice})',
 	buy_atleast_amount_for: 'Buy at least {min_to_receive} for {amount_to_sell} ({effectivePrice})',
+	price_warning_above: 'This price is well above the current market price of {marketPrice}, are you sure?', //FIXME
+	price_warning_below: 'This price is well below the current market price of {marketPrice}, are you sure?', //FIXME
+	order_cancel_confirm: 'Cancel order {order_id} from {user}?', //FIXME
+	order_cancelled: 'Order {order_id} cancelled.', //FIXME
 	higher: 'Más alto', // context is about prices
 	lower: 'Más bajo', // context is about prices
 	total_sd_dollars: "Total SD ($)",
@@ -382,7 +386,7 @@ const es = 	{
 	view_the_direct_parent: 'Vista directa del padre',
 	you_are_viewing_single_comments_thread_from: 'You are viewing a single comment&#39;s thread from',
 	view_the_full_context: 'View the full context',
-	this_is_a_price_feed_conversion: 'This is a price feed conversion. The one week day delay is necessary to prevent abuse from gaming the price feed average',
+	this_is_a_price_feed_conversion: 'This is a price feed conversion. The 3.5 day delay is necessary to prevent abuse from gaming the price feed average',
 	your_existing_SD_are_liquid_and_transferable: 'Your existing Steem Dollars are liquid and transferable.  Instead you may wish to trade Steem Dollars directly in this site under {link} or transfer to an external market.',
 	buy_or_sell: 'Buy or Sells',
 	trending_30_day: 'trending (30 day)',

@@ -10,7 +10,7 @@ const it = 	{
 	stolen_account_recovery: "Recupera Account Perso",
 	change_account_password: "Modifica Password Account",
 	steemit_chat: "Steemit Chat",
-    steemit_api_docs: "Steemit API Docs",
+	steemit_api_docs: "Steemit API Docs",
 	witnesses: "Testimoni",
 	vote_for_witnesses: "Vota per Testimoni",
 	privacy_policy: "Privacy Policy",
@@ -223,6 +223,10 @@ const it = 	{
 	open_orders: 'Open Orders',
 	sell_amount_for_atleast: 'Vendi {amount_to_sell} per almeno {min_to_receive} ({effectivePrice})',
 	buy_atleast_amount_for: 'Buy at least {min_to_receive} for {amount_to_sell} ({effectivePrice})',
+	price_warning_above: 'This price is well above the current market price of {marketPrice}, are you sure?', //FIXME
+	price_warning_below: 'This price is well below the current market price of {marketPrice}, are you sure?', //FIXME
+	order_cancel_confirm: 'Cancel order {order_id} from {user}?', //FIXME
+	order_cancelled: 'Order {order_id} cancelled.', //FIXME
 	higher: 'Higher', // context is about prices
 	lower: 'Lower', // context is about prices
 	total_sd_dollars: "Total SD ($)",
@@ -382,7 +386,7 @@ const it = 	{
 	view_the_direct_parent: 'Visualizza cartella principale',
 	you_are_viewing_single_comments_thread_from: 'You are viewing a single comment&#39;s thread from',
 	view_the_full_context: 'Visualizza tutto il contesto',
-	this_is_a_price_feed_conversion: 'This is a price feed conversion. The one week day delay is necessary to prevent abuse from gaming the price feed average',
+	this_is_a_price_feed_conversion: 'This is a price feed conversion. The 3.5 day delay is necessary to prevent abuse from gaming the price feed average',
 	your_existing_SD_are_liquid_and_transferable: 'I tuoi Steem Dollars esistenti sono liquidi and trasferibili.  Instead you may wish to trade Steem Dollars directly in this site under {link} or transfer to an external market.',
 	buy_or_sell: 'Compra or Vendi',
 	trending_30_day: 'trending (30 day)',
