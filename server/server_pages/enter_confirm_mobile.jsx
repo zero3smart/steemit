@@ -9,7 +9,11 @@ import SignupProgressBar from 'app/components/elements/SignupProgressBar';
 import CountryCode from 'app/components/elements/CountryCode';
 import {getRemoteIp, checkCSRF} from 'server/utils';
 import MiniHeader from 'app/components/modules/MiniHeader';
-import secureRandom from 'secure-random'
+import secureRandom from 'secure-random';
+import config from '../../config';
+import Mixpanel from 'mixpanel';
+
+const mixpanel = config.mixpanel ? Mixpanel.init(config.mixpanel) : null;
 
 const assets_file = process.env.NODE_ENV === 'production' ? 'tmp/webpack-stats-prod.json' : 'tmp/webpack-stats-dev.json';
 const assets = Object.assign({}, require(assets_file), {script: []});
@@ -17,23 +21,6 @@ const assets = Object.assign({}, require(assets_file), {script: []});
 function *confirmMobileHandler() {
     const confirmation_code = this.params && this.params.code ? this.params.code : this.request.body.code;
     console.log('-- /confirm_mobile -->', this.session.uid, this.session.user, confirmation_code);
-
-    const phone = yield models.Identity.findOne(
-        {attributes: ['id', 'phone'], where: {confirmation_code, provider: 'phone'}}
-    );
-    if (!phone) {
-        this.flash = {error: 'Wrong confirmation code.'};
-        this.redirect('/enter_mobile');
-        return;
-    }
-    const verified_phone = yield models.Identity.findOne(
-        {attributes: ['id'], where: {phone: phone.phone, provider: 'phone', verified: true}}
-    );
-    if (verified_phone) {
-        this.flash = {success: 'Phone number has already been verified'};
-        this.redirect('/create_account');
-        return;
-    }
     const mid = yield models.Identity.findOne(
         {attributes: ['id', 'user_id', 'verified', 'updated_at'], where: {user_id: this.session.user, confirmation_code, provider: 'phone'}, order: 'id DESC'}
     );
@@ -55,6 +42,7 @@ function *confirmMobileHandler() {
         return;
     }
     yield mid.update({verified: true});
+    if (mixpanel) mixpanel.track('SignupStep3', {distinct_id: this.session.uid});
     this.redirect('/create_account');
 }
 export default function useEnterAndConfirmMobilePages(app) {
@@ -72,6 +60,7 @@ export default function useEnterAndConfirmMobilePages(app) {
         );
         if (mid && mid.verified) {
             this.flash = {success: 'Phone number has already been verified'};
+            if (mixpanel) mixpanel.track('SignupStep3', {distinct_id: this.session.uid});
             this.redirect('/create_account');
             return;
         }
@@ -109,6 +98,7 @@ export default function useEnterAndConfirmMobilePages(app) {
         </div>);
         const props = { body, title: 'Phone Number', assets, meta: [] };
         this.body = '<!DOCTYPE html>' + renderToString(<ServerHTML { ...props } />);
+        if (mixpanel) mixpanel.track('SignupStep2', {distinct_id: this.session.uid});
     });
 
     router.post('/submit_mobile', koaBody, function *() {
@@ -161,6 +151,7 @@ export default function useEnterAndConfirmMobilePages(app) {
             if (mid.verified) {
                 if(mid.phone === phone) {
                     this.flash = {success: 'Phone number has been verified'};
+                    if (mixpanel) mixpanel.track('SignupStep3', {distinct_id: this.session.uid});
                     this.redirect('/create_account');
                     return;
                 }
