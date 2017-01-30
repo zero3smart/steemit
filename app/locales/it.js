@@ -92,7 +92,7 @@ const it = 	{
 	all_accounts_refunded: 'Tutti gli account recuperati sono stati rimborsati pienamente',
 	steemit_is_now_open_source: 'Steemit.com è ora Open Source',
 	// this is mainly from ReplyEditor
-	tag_your_story: 'Tag (massimo 5 tags), il primo tag rappresenta la categoria principale.',
+	tag_your_story: 'Tag (massimo 4 tags), il primo tag rappresenta la categoria principale.',
 	select_a_tag: 'Seleziona un tag',
 	required: 'Richiesto',
 	shorten_title: 'Titoletto',
@@ -170,7 +170,6 @@ const it = 	{
 	generated_password: 'Password Generata',
 	recover_account: 'Recupera Account',
 	new: 'nuovo', // ex. 'Generated Password (new)', but not exclusively
-	age: 'nuovo',
 	backup_password_by_storing_it: 'Fai un backup della tua password o scrivila su un foglio di carta',
 	click_to_generate_password: 'Clicca per generare una password',
 	re_enter_generate_password: 'Riscrivi la Password generata',
@@ -240,7 +239,7 @@ const it = 	{
 	request_already_submitted_contact_support: 'La tua richiesta è stata aggiunta e ci stiamo lavorando. Per cortesia contatta support@steemit.com per richiede lo stato della tua richiesta.',
 	recover_account_intro: "Di volta in volta, una chiave proprietaria di uno Steemians può essere compromessa. Stolen Account Recovery dà al proprietario dell'account legittimo 30 giorni per recuperarlo dal momento in cui il ladro ha cambiato la chiave proprietaria. Stolen Account Recovery può essere usata su steemit.com if se il proprietario dell\'account ha precedentemente legato Steemit tramite account fiduciario e rispettato i termini di servizio.",
 	login_with_facebook_or_reddit_media_to_verify_identity: 'Per cortesia effettua un login con Facebook o Reddit per verificare la tua identità',
-	login_with_social_media_to_verify_identity: 'Per cortesia effettua un login con {provider} per verificare la tua identità',
+	login_with_social_media_to_verify_identity: 'Per cortesia effettua un login con {show_social_login} per verificare la tua identità',
 	enter_email_toverify_identity: 'Abbiamo bisogono di verificare la tua identità. Per cortesia inserisci il tuo indirizzo email di seguito per iniziare la procedura di verifica.',
 	email: 'Email',
 	continue_with_email: "Continua con Email",

@@ -92,7 +92,7 @@ const es_AR = 	{
 	all_accounts_refunded: 'All Recovered Accounts have been fully Refunded',
 	steemit_is_now_open_source: 'Steemit.com es ahora Software Libre',
 	// this is mainly from ReplyEditor
-	tag_your_story: 'Tag (up to 5 tags), the first tag is your main category.',
+	tag_your_story: 'Tag (up to 4 tags), the first tag is your main category.',
 	select_a_tag: 'Selecciona una etiqueta',
 	required: 'Requerido',
 	shorten_title: 'Acortar título!',
@@ -170,7 +170,6 @@ const es_AR = 	{
 	generated_password: 'Contraseña generada',
 	recover_account: 'Recuperar cuenta',
 	new: 'nueva', // ex. 'Generated Password (new)', but not exclusively
-	age: 'nueva',
 	backup_password_by_storing_it: 'Asegurá esta contraseña almacenándola en un gestor de contraseñas, en un papel, y/o en un archivo de texto seguro',
 	click_to_generate_password: 'Click para generar contraseña',
 	re_enter_generate_password: 'Re-ingresar constaseña generada',
@@ -240,7 +239,7 @@ const es_AR = 	{
 	request_already_submitted_contact_support: 'Your request has been already submitted and we are working on it. Please contact support@steemit.com for the status of your request.',
 	recover_account_intro: "From time to time, a Steemians owner key may be compromised. Stolen Account Recovery gives the rightful account owner 30 days to recover their account from the moment the thief changed their owner key. Stolen Account Recovery can only be used on steemit.com if the account owner had perviously listed Steemit as their account trustee and complied with Steemits Terms of Service.",
 	login_with_facebook_or_reddit_media_to_verify_identity: 'Please login with Facebook or Reddit to verify your identity',
-	login_with_social_media_to_verify_identity: 'Please login with {provider} to verify your identity',
+	login_with_social_media_to_verify_identity: 'Please login with {show_social_login} to verify you identity',
 	enter_email_toverify_identity: 'We need to verify your identity. Please enter your email address below to begin the verification.',
 	email: 'Correo electrónico',
 	continue_with_email: "Continuar con correo",
