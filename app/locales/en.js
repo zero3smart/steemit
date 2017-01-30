@@ -108,7 +108,7 @@ const en = 	{
 	all_accounts_refunded: 'All Recovered Accounts have been fully Refunded',
 	APP_URL_is_now_open_source: APP_URL + ' is now Open Source',
 	// this is mainly from ReplyEditor
-	tag_your_story: 'Tag (up to 5 tags), the first tag is your main category.',
+	tag_your_story: 'Tag (up to 4 tags), the first tag is your main category.',
 	select_a_tag: 'Select a tag',
 	required: 'Required',
 	shorten_title: 'Shorten title',
@@ -372,7 +372,8 @@ const en = 	{
 	// Voting.jsx
 	stop_seeing_content_from_this_user: 'Stop seeing content from this user',
 	flagging_post_can_remove_rewards_the_flag_should_be_used_for_the_following: 'Flagging a post can remove rewards and make this material less visible. Some common reasons to flag',
-	fraud_or_plagiarism: 'Fraud or Plagiarism',
+    inappropriate_rewards_distribution: 'Inappropriate rewards distribution',
+    fraud_or_plagiarism: 'Fraud or Plagiarism',
 	hate_speech_or_internet_trolling: 'Hate Speech or Internet Trolling',
 	intentional_miss_categorized_content_or_spam: 'Intentional miss-categorized content or Spam',
 	downvote: 'Downvote',

@@ -92,13 +92,13 @@ const fr = 	{
 	all_accounts_refunded: 'Vous les comptes récupérés ont été remboursés.',
 	steemit_is_now_open_source: 'Steemit.com est maintenant Open Source',
 	// this is mainly from ReplyEditor
-	tag_your_story: 'Tag (jusqu\'à 5 tags), le premier tag est votre catégorie principale.',
+	tag_your_story: 'Tag (jusqu\'à 4 tags), le premier tag est votre catégorie principale.',
 	select_a_tag: 'Choisir un tag',
 	required: 'Obligatoire',
 	shorten_title: 'Raccourcir le titre',
 	exceeds_maximum_length: 'Depasse la taille maximum ({maxKb}KB)',
 	including_the_category: "(y compris la catégorie '{rootCategory}')",
-	use_limited_amount_of_tags: 'Vous avez {tagsLength} tags en tout{includingCategory}. Veuillez n\'utiliser que 5 tags en tout.',
+	use_limited_amount_of_tags: 'Vous avez {tagsLength} tags en tout{includingCategory}. Veuillez n\'utiliser que 4 tags en tout.',
 	// this is mainly used in CategorySelector
 	use_limitied_amount_of_categories: 'S\'il vous plait, n\'utilisez que {amount} catégories',
 	use_one_dash: 'N\'utilisez qu\'un seul signe dièse',
@@ -352,7 +352,8 @@ const fr = 	{
 	// Voting.jsx
 	stop_seeing_content_from_this_user: 'Stop seeing content from this user',
 	flagging_post_can_remove_rewards_the_flag_should_be_used_for_the_following: 'Flagging a post can remove rewards and make this material less visible. Some common reasons to flag',
-	fraud_or_plagiarism: 'Fraud or Plagiarism',
+    inappropriate_rewards_distribution: 'Répartition inappropriée des récompenses',
+    fraud_or_plagiarism: 'Fraud or Plagiarism',
 	hate_speech_or_internet_trolling: 'Hate Speech or Internet Trolling',
 	intentional_miss_categorized_content_or_spam: 'Intentional miss-categorized content or Spam',
 	downvote: 'Downvote',
