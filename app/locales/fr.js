@@ -92,13 +92,13 @@ const fr = 	{
 	all_accounts_refunded: 'Vous les comptes récupérés ont été remboursés.',
 	steemit_is_now_open_source: 'Steemit.com est maintenant Open Source',
 	// this is mainly from ReplyEditor
-	tag_your_story: 'Tag (jusqu\'à 4 tags), le premier tag est votre catégorie principale.',
+	tag_your_story: 'Tag (jusqu\'à 5 tags), le premier tag est votre catégorie principale.',
 	select_a_tag: 'Choisir un tag',
 	required: 'Obligatoire',
 	shorten_title: 'Raccourcir le titre',
 	exceeds_maximum_length: 'Depasse la taille maximum ({maxKb}KB)',
 	including_the_category: "(y compris la catégorie '{rootCategory}')",
-	use_limited_amount_of_tags: 'Vous avez {tagsLength} tags en tout{includingCategory}. Veuillez n\'utiliser que 4 tags en tout.',
+	use_limited_amount_of_tags: 'Vous avez {tagsLength} tags en tout{includingCategory}. Veuillez n\'utiliser que 5 tags en tout.',
 	// this is mainly used in CategorySelector
 	use_limitied_amount_of_categories: 'S\'il vous plait, n\'utilisez que {amount} catégories',
 	use_one_dash: 'N\'utilisez qu\'un seul signe dièse',
@@ -170,6 +170,7 @@ const fr = 	{
 	generated_password: 'Mot de Passe Généré',
 	recover_account: 'Récuperer Compte',
 	new: 'nouveau', // ex. 'Generated Password (new)', but not exclusively
+	age: 'nouveau',
 	backup_password_by_storing_it: 'Gardez une copie de votre mot de passe dans votre gestionnaire de mot de passe ou dans un fichier texte',
 	click_to_generate_password: 'Cliquez pour génerer un mot de passe',
 	re_enter_generate_password: 'Retaper le Mot de Passe Généré',
@@ -239,7 +240,7 @@ const fr = 	{
 	request_already_submitted_contact_support: 'Votre demande a déjà été soumise et nous travaillons dessus. Veuillez contacter support@steemit.com à propos du status de votre demande.',
 	recover_account_intro: "From time to time, a Steemians owner key may be compromised. Stolen Account Recovery gives the rightful account owner 30 days to recover their account from the moment the thief changed their owner key. Stolen Account Recovery can only be used on steemit.com if the account owner had perviously listed Steemit as their account trustee and complied with Steemits Terms of Service.",
 	login_with_facebook_or_reddit_media_to_verify_identity: 'Veuillez vous connecter avec Facebook ou Reddit pour verifier votre identité',
-	login_with_social_media_to_verify_identity: 'Veuillez vous connecter avec {show_social_login} pour verifier votre identité',
+	login_with_social_media_to_verify_identity: 'Veuillez vous connecter avec {provider} pour verifier votre identité',
 	enter_email_toverify_identity: 'Nous devons verifier votre identité. Veuillez entrer votre addresse email ci-dessous pour commencer la verification.',
 	email: 'Email',
 	continue_with_email: "Continuer par Email",
@@ -350,7 +351,7 @@ const fr = 	{
 	connection_lost_reconnecting: 'Connection lost, reconnecting',
 	// Voting.jsx
 	stop_seeing_content_from_this_user: 'Stop seeing content from this user',
-	flagging_post_can_remove_rewards_the_flag_should_be_used_for_the_following: 'Flagging a post can remove rewards and make this material less visible. The flag should be used for the following',
+	flagging_post_can_remove_rewards_the_flag_should_be_used_for_the_following: 'Flagging a post can remove rewards and make this material less visible. Some common reasons to flag',
 	fraud_or_plagiarism: 'Fraud or Plagiarism',
 	hate_speech_or_internet_trolling: 'Hate Speech or Internet Trolling',
 	intentional_miss_categorized_content_or_spam: 'Intentional miss-categorized content or Spam',
