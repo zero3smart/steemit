@@ -3,7 +3,6 @@ import Author from 'app/components/elements/Author';
 import ReplyEditor from 'app/components/elements/ReplyEditor';
 import MarkdownViewer from 'app/components/cards/MarkdownViewer';
 import shouldComponentUpdate from 'app/utils/shouldComponentUpdate'
-// import FormattedAsset from 'app/components/elements/FormattedAsset';
 import Voting from 'app/components/elements/Voting';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
@@ -156,12 +155,13 @@ class CommentImpl extends React.Component {
         const content = props.cont.get(props.content);
         if (content) {
             const hide = content.getIn(['stats', 'hide'])
+            const gray = content.getIn(['stats', 'gray'])
             if(hide) {
                 const {onHide} = this.props
                 // console.log('Comment --> onHide')
                 if(onHide) onHide()
             }
-            this.setState({hide_body: hide || content.getIn(['stats', 'netVoteSign']) == -1})
+            this.setState({hide_body: hide || gray})
         }
     }
 
