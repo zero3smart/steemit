@@ -38,7 +38,6 @@ class PostSummary extends React.Component {
         pending_payout: React.PropTypes.string.isRequired,
         total_payout: React.PropTypes.string.isRequired,
         content: React.PropTypes.object.isRequired,
-        netVoteSign: React.PropTypes.number,
         currentCategory: React.PropTypes.string,
         thumbSize: React.PropTypes.string,
         nsfwPref: React.PropTypes.string,
@@ -179,7 +178,7 @@ class PostSummary extends React.Component {
 
         return (
             <article className={'PostSummary hentry' + (thumb ? ' with-image ' : ' ') + commentClasses.join(' ')} itemScope itemType ="http://schema.org/blogPost">
-                <div className={hasFlag ? '' : 'PostSummary__collapse'}>
+                <div className="PostSummary__collapse">
                     <div className="float-right"><Voting post={post} flag /></div>
                 </div>
                 {reblogged_by}

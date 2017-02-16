@@ -32,7 +32,6 @@ class Voting extends React.Component {
         // HTML properties
         post: React.PropTypes.string.isRequired,
         flag: React.PropTypes.bool,
-        showList: React.PropTypes.bool,
 
         // Redux connect properties
         vote: React.PropTypes.func.isRequired,
@@ -40,10 +39,16 @@ class Voting extends React.Component {
         permlink: React.PropTypes.string,
         username: React.PropTypes.string,
         is_comment: React.PropTypes.bool,
+        myVote: React.PropTypes.number,
         active_votes: React.PropTypes.object,
         loggedin: React.PropTypes.bool,
-        post_obj: React.PropTypes.object,
+        pending_payout: React.PropTypes.number,
+        promoted: React.PropTypes.number,
+        total_author_payout: React.PropTypes.number,
+        total_curator_payout: React.PropTypes.number,
+        cashout_time: React.PropTypes.string,
         vesting_shares: React.PropTypes.number,
+        showList: React.PropTypes.bool,
         voting: React.PropTypes.bool,
     };
 
@@ -56,7 +61,6 @@ class Voting extends React.Component {
         super(props);
         this.state = {
             showWeight: false,
-            myVote: null,
             weight: 10000
         }
 
@@ -71,8 +75,7 @@ class Voting extends React.Component {
         this.voteUpOrDown = (up) => {
             if(this.props.voting) return
             this.setState({votingUp: up, votingDown: !up})
-            const {myVote} = this.state
-            const {author, permlink, username, is_comment} = this.props
+            const {author, permlink, username, myVote, is_comment} = this.props
             if (this.props.vesting_shares > VOTE_WEIGHT_DROPDOWN_THRESHOLD) {
                 localStorage.setItem('voteWeight' + (up ? '' : 'Down') + '-'+username+(is_comment ? '-comment' : ''),
                     this.state.weight);
@@ -108,28 +111,10 @@ class Voting extends React.Component {
         this.shouldComponentUpdate = shouldComponentUpdate(this, 'Voting')
     }
 
-    componentWillMount() {
-        const {username, active_votes} = this.props;
-        this._checkMyVote(username, active_votes)
-    }
-
-    componentWillReceiveProps(nextProps) {
-        const {username, active_votes} = nextProps;
-        this._checkMyVote(username, active_votes)
-    }
-
-    _checkMyVote(username, active_votes) {
-        if (username && active_votes) {
-            const vote = active_votes.find(el => el.get('voter') === username)
-            // weigth warning, the API may send a string or a number (when zero)
-            if(vote) this.setState({myVote: parseInt(vote.get('percent') || 0, 10)})
-        }
-    }
-
     render() {
-        const {active_votes, showList, voting, flag, vesting_shares, is_comment, post_obj} = this.props;
+        const {myVote, active_votes, showList, voting, flag, vesting_shares, is_comment} = this.props;
         const {username} = this.props;
-        const {votingUp, votingDown, showWeight, weight, myVote} = this.state;
+        const {votingUp, votingDown, showWeight, weight} = this.state;
         // console.log('-- Voting.render -->', myVote, votingUp, votingDown);
         if(!active_votes) return <span></span>
         if(flag && !username) return null
@@ -161,20 +146,13 @@ class Voting extends React.Component {
             const flagClickAction = myVote === null || myVote === 0 ? this.toggleWeightDown : this.voteDown
             return <span className="Voting">
                 <span className={classDown}>
-                    {down_votes > 0 && <span className="Voting__button-downvotes">{down_votes}</span>}
                     {votingDownActive ? down : <a href="#" onClick={flagClickAction} title="Flag">{down}</a>}
                     {dropdown}
                 </span>
             </span>
         }
 
-        const cashout_time = post_obj.get('cashout_time')
-        const max_payout           = parsePayoutAmount(post_obj.get('max_accepted_payout'))
-        const pending_payout       = parsePayoutAmount(post_obj.get('pending_payout_value'))
-        const promoted             = parsePayoutAmount(post_obj.get('promoted'))
-        const total_author_payout  = parsePayoutAmount(post_obj.get('total_payout_value'))
-        const total_curator_payout = parsePayoutAmount(post_obj.get('curator_payout_value'))
-
+        const {max_payout, pending_payout, total_author_payout, total_curator_payout, cashout_time, promoted} = this.props;
         let payout = pending_payout + total_author_payout + total_curator_payout;
         if (payout < 0.0) payout = 0.0;
         if (payout > max_payout) payout = max_payout;
@@ -268,20 +246,29 @@ export default connect(
         if (!post) return ownProps
         const author = post.get('author')
         const permlink = post.get('permlink')
+        const last_payout = post.get('last_payout')
         const active_votes = post.get('active_votes')
         const is_comment = post.get('parent_author') !== ''
-
         const current_account = state.user.get('current')
+        const cashout_time = post.get('cashout_time')
+        const max_payout           = parsePayoutAmount(post.get('max_accepted_payout'))
+        const pending_payout       = parsePayoutAmount(post.get('pending_payout_value'))
+        const promoted             = parsePayoutAmount(post.get('promoted'))
+        const total_author_payout  = parsePayoutAmount(post.get('total_payout_value'))
+        const total_curator_payout = parsePayoutAmount(post.get('curator_payout_value'))
         const username = current_account ? current_account.get('username') : null;
         const vesting_shares = current_account ? current_account.get('vesting_shares') : 0.0;
         const voting = state.global.get(`transaction_vote_active_${author}_${permlink}`)
-
+        let myVote = null;
+        if (username && active_votes) {
+            const vote = active_votes.find(el => el.get('voter') === username)
+            // weigth warning, the API may send a string or a number (when zero)
+            if(vote) myVote = parseInt(vote.get('percent') || 0, 10)
+        }
         return {
-            post: ownProps.post,
-            flag: ownProps.flag,
-            showList: ownProps.showList,
-            author, permlink, username, active_votes, vesting_shares, is_comment,
-            post_obj: post,
+            ...ownProps,
+            myVote, author, permlink, username, active_votes, vesting_shares, is_comment,
+            max_payout, pending_payout, promoted, total_author_payout, total_curator_payout, cashout_time,
             loggedin: username != null,
             voting
         }
