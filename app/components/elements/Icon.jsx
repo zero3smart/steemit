@@ -32,8 +32,11 @@ const icons = [
     'photo',
     'line',
     'video',
+    'eye',
     'location',
     'calendar',
+    'steemd',
+    'steemdb'
 ];
 const icons_map = {};
 for (const i of icons) icons_map[i] = require(`app/assets/icons/${i}.svg`);
