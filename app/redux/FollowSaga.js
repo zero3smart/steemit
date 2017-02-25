@@ -6,6 +6,16 @@ import {Apis} from 'shared/api_client';
     This loadFollows both 'blog' and 'ignore'
 */
 
+//fetch for follow/following count
+export function* fetchFollowCount(account) {
+    const counts = yield call(Apis.follow, 'get_follow_count', account)
+    yield put({type: 'global/UPDATE', payload: {
+        key: ['follow_count', account],
+        updater: m => m.mergeDeep({'follower_count': counts.follower_count,
+        'following_count': counts.following_count})
+    }})
+}
+
 // Test limit with 2 (not 1, infinate looping)
 export function* loadFollows(method, account, type, force = false) {
     if(yield select(state => state.global.getIn(['follow', method, account, type + '_loading']))) {
@@ -31,7 +41,8 @@ export function* loadFollows(method, account, type, force = false) {
 }
 
 function* loadFollowsLoop(method, account, type, start = '', limit = 100) {
-    const res = fromJS(yield Apis.follow(method, account, start, type, limit))
+    method == "get_followers" ? limit = 1000 : limit;
+    const res = fromJS(yield Apis.follow(method, account, start, type, limit));
     // console.log('res.toJS()', res.toJS())
 
     let cnt = 0
