@@ -29,16 +29,24 @@ npm install -g babel-cli
 
 #### Create config file
 
+
 ```bash
 cd config
 cp steem-example.json steem-dev.json
+```
+
+Generate a new crypto_key and save under server_session_secret in ./steem-dev.json.
+
+```bash
+node
+> crypto.randomBytes(32).toString('base64')
 ```
 
 (note: it's steem.json in production)
 
 #### Install mysql server
 
-OS X :
+OS X:
 
 ```bash
 brew update
@@ -80,6 +88,25 @@ npm install -g sequelize sequelize-cli pm2 mysql
 
 Run `sequelize db:migrate` in `db/` directory.
 
+#### Install Tarantool
+
+OS X:
+
+```bash
+brew install tarantool
+```
+
+Debian based Linux:
+
+```bash
+sudo apt-get install tarantool
+```
+
+Test the interactive console:
+
+```bash
+user@example:~$ tarantool
+```
 
 ### Development
 
