@@ -7,9 +7,9 @@ import user from 'app/redux/User'
 import {getAccount} from 'app/redux/SagaShared'
 import {browserHistory} from 'react-router'
 import {serverApiLogin, serverApiLogout} from 'app/utils/ServerApiClient';
-import {Apis} from 'shared/api_client';
 import {serverApiRecordEvent} from 'app/utils/ServerApiClient';
 import {loadFollows} from 'app/redux/FollowSaga'
+import {api} from 'steem';
 
 export const userWatches = [
     watchRemoveHighSecurityKeys, // keep first to remove keys early when a page change happens
@@ -52,8 +52,8 @@ export function* watchRemoveHighSecurityKeys() {
 
 function* loadSavingsWithdraw() {
     const username = yield select(state => state.user.getIn(['current', 'username']))
-    const to = yield call(Apis.db_api, 'get_savings_withdraw_to', username)
-    const fro = yield call(Apis.db_api, 'get_savings_withdraw_from', username)
+    const to = yield call([api, api.getSavingsWithdrawToAsync], username)
+    const fro = yield call([api, api.getSavingsWithdrawFromAsync], username)
 
     const m = {}
     for(const v of to) m[v.id] = v
@@ -183,6 +183,9 @@ function* usernamePasswordLogin2({payload: {username, password, saveLogin,
         const owner_pub_key = account.getIn(['owner', 'key_auths', 0, 0]);
         // const pub_keys = yield select(state => state.user.get('pub_keys_used'))
         // serverApiRecordEvent('login_attempt', JSON.stringify({name: username, ...pub_keys, cur_owner: owner_pub_key}))
+        // FIXME pls parameterize opaque things like this into a constants file
+        // code like this requires way too much historical knowledge to
+        // understand.
         if (owner_pub_key === 'STM7sw22HqsXbz7D2CmJfmMwt9rimtk518dRzsR1f8Cgw52dQR1pR') {
             yield put(user.actions.loginError({ error: 'Hello. Your account may have been compromised. We are working on restoring an access to your account. Please send an email to support@steemit.com.' }))
             return
@@ -346,7 +349,7 @@ function* lookupPreviousOwnerAuthority({payload: {}}) {
         return
     }
     // Owner history since this index was installed July 14
-    let owner_history = fromJS(yield call(Apis.db_api, 'get_owner_history', username))
+    let owner_history = fromJS(yield call([api, api.getOwnerHistoryAsync], username))
     if(owner_history.count() === 0) return
     owner_history = owner_history.sort((b, a) => {//sort decending
         const aa = a.get('last_valid_time')
@@ -462,6 +465,6 @@ function* uploadImage({payload: {file, dataUrl, filename = 'image.txt', progress
 // function* getCurrentAccount() {
 //     const current = yield select(state => state.user.get('current'))
 //     if (!current) return
-//     const [account] = yield call(Apis.db_api, 'get_accounts', [current.get('username')])
+//     const [account] = yield call([api, api.getAccountsAsync], [current.get('username')])
 //     yield put(g.actions.receiveAccount({ account }))
 // }
