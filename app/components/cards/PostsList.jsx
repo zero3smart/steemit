@@ -102,7 +102,7 @@ class PostsList extends React.Component {
         if ('keyCode' in e && e.keyCode !== 27) return;
         window.removeEventListener('popstate', this.onBackButton);
         window.removeEventListener('keydown', this.onBackButton);
-        this.setState({showPost: null});
+        this.closePostModal();
     }
 
     closeOnOutsideClick(e) {
@@ -228,7 +228,7 @@ export default connect(
         const current = state.user.get('current')
         const username = current ? current.get('username') : state.offchain.get('account')
         const content = state.global.get('content');
-        const ignore_result = state.global.getIn(['follow', 'get_following', username, 'ignore_result']);
+        const ignore_result = state.global.getIn(['follow', 'getFollowingAsync', username, 'ignore_result']);
         return {...props, username, content, ignore_result, pathname};
     },
     dispatch => ({
