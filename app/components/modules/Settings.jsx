@@ -132,7 +132,7 @@ class Settings extends React.Component {
         const {profile_image, name, about, location, website} = this.state
 
         const {follow, account, isOwnAccount} = this.props
-        const following = follow && follow.getIn(['getFollowingAsync', account.name]);
+        const following = follow && follow.getIn(['get_following', account.name]);
         const ignores = isOwnAccount && following && following.get('ignore_result')
 
         return <div className="Settings">
@@ -246,7 +246,8 @@ export default connect(
         const account = state.global.getIn(['accounts', accountname]).toJS()
         const current_user = state.user.get('current')
         const username = current_user ? current_user.get('username') : ''
-        const metaData = account ? o2j.ifStringParseJSON(account.json_metadata) : {}
+        let metaData = account ? o2j.ifStringParseJSON(account.json_metadata) : {}
+        if (typeof metaData === 'string') metaData = JSON.parse(metaData); // issue #1237
         const profile = metaData && metaData.profile ? metaData.profile : {}
 
         return {
