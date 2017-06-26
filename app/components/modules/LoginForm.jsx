@@ -1,14 +1,14 @@
 /* eslint react/prop-types: 0 */
 import React, { PropTypes, Component } from 'react';
+import {PublicKey, PrivateKey} from 'shared/ecc'
 import transaction from 'app/redux/Transaction'
 import g from 'app/redux/GlobalReducer'
 import user from 'app/redux/User'
 import {validate_account_name} from 'app/utils/ChainValidation';
-import runTests from 'app/utils/BrowserTests';
+import runTests from 'shared/ecc/test/BrowserTests';
 import shouldComponentUpdate from 'app/utils/shouldComponentUpdate'
 import reactForm from 'app/utils/ReactForm'
 import {serverApiRecordEvent} from 'app/utils/ServerApiClient';
-import {PrivateKey, PublicKey} from 'steem/lib/auth/ecc';
 
 class LoginForm extends Component {
 
@@ -138,9 +138,9 @@ class LoginForm extends Component {
             postType = 'Login to Follow Users'
         } else if (loginBroadcastOperation) {
             // check for post or comment in operation
-            postType = loginBroadcastOperation.getIn(['operation', 'title']) ? 'Login to Post' : 'Login to Comment';
+            postType = loginBroadcastOperation.getIn(['operation', 'title']) ? 'Login to Post' : 'Login to Proceed';
         }
-        const title = postType ? postType : 'Login to your Steem Account';
+        const title = postType ? postType : 'Login';
         const authType = /^vote|comment/.test(opType) ? 'Posting' : 'Active or Owner';
         const submitLabel = loginBroadcastOperation ? 'Sign In' : 'Login';
         let error = password.touched && password.error ? password.error : this.props.login_error;
@@ -205,6 +205,7 @@ class LoginForm extends Component {
                         <input id="saveLogin" type="checkbox" ref="pw" {...saveLogin.props} onChange={this.saveLoginToggle} disabled={submitting} /></label>
                 </div>}
                 <div>
+                    <br />
                     <button type="submit" disabled={submitting || disabled} className="button" onClick={this.SignIn}>
                         {submitLabel}
                     </button>
@@ -215,7 +216,7 @@ class LoginForm extends Component {
                 <hr />
                 <div>
                     <p>Join our <span className="free-slogan">amazing community</span> to comment and reward others.</p>
-                    <button type="button" className="button sign-up" onClick={this.SignUp}>Sign up now to receive <span className="free-money">FREE MONEY!</span></button>
+                    <button type="button" className="button sign-up" onClick={this.SignUp}>Sign up now to receive <span className="free-money">FREE STEEM!</span></button>
                 </div>
             </form>
         </center>
