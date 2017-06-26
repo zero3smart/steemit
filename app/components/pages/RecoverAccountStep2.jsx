@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Apis from 'shared/api_client/ApiInstances';
 import GeneratedPasswordInput from 'app/components/elements/GeneratedPasswordInput';
+import {PrivateKey} from 'shared/ecc';
 import LoadingIndicator from 'app/components/elements/LoadingIndicator';
 import { translate } from 'app/Translator';
 import Callout from 'app/components/elements/Callout';
-import {PrivateKey} from 'steem/lib/auth/ecc';
-import {api} from 'steem';
 
 function passwordToOwnerPubKey(account_name, password) {
     let pub_key;
@@ -60,7 +60,7 @@ class RecoverAccountStep2 extends React.Component {
     }
 
     checkOldOwner(name, oldOwner) {
-        return api.getOwnerHistoryAsync(name).then(history => {
+        return Apis.db_api('get_owner_history', name).then(history => {
             const res = history.filter(a => {
                 const owner = a.previous_owner_authority.key_auths[0][0];
                 return owner === oldOwner;
@@ -122,7 +122,9 @@ class RecoverAccountStep2 extends React.Component {
         }
         const {account_to_recover} = this.props;
         if (!account_to_recover) {
-            return <Callout body={translate('account_recovery_request_not_confirmed')} />;
+            return <Callout type="error">
+                <span>{translate('account_recovery_request_not_confirmed')}</span>
+            </Callout>;
         }
         const {oldPassword, valid, error, progress_status, name_error, success} = this.state;
         const submit_btn_class = 'button action' + (!valid || !oldPassword ? ' disabled' : '');
