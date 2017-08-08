@@ -7,7 +7,7 @@ import user from 'app/redux/User';
 import LoadingIndicator from 'app/components/elements/LoadingIndicator';
 import {transferTips} from 'app/utils/Tips'
 import {powerTip, powerTip2, powerTip3} from 'app/utils/Tips'
-import {browserTests} from 'shared/ecc/test/BrowserTests'
+import runTests, {browserTests} from 'app/utils/BrowserTests'
 import {validate_account_name} from 'app/utils/ChainValidation';
 import {countDecimals} from 'app/utils/ParsersAndFormatters'
 
@@ -19,7 +19,7 @@ class TransferForm extends Component {
         currentUser: PropTypes.object.isRequired,
         toVesting: PropTypes.bool.isRequired,
         currentAccount: PropTypes.object.isRequired,
-    }
+    };
 
     constructor(props) {
         super();
@@ -35,7 +35,8 @@ class TransferForm extends Component {
                 ReactDOM.findDOMNode(this.refs.to).focus();
             else
                 ReactDOM.findDOMNode(this.refs.amount).focus()
-        }, 300)
+        }, 300);
+        runTests()
     }
 
     onAdvanced = (e) => {
@@ -44,7 +45,7 @@ class TransferForm extends Component {
         this.state.to.props.onChange(username);
         // setTimeout(() => {ReactDOM.findDOMNode(this.refs.amount).focus()}, 300)
         this.setState({advanced: !this.state.advanced})
-    }
+    };
 
     initForm(props) {
         const {transferType} = props.initialValues;
@@ -90,7 +91,7 @@ class TransferForm extends Component {
         })
     }
 
-    clearError = () => {this.setState({ trxError: undefined })}
+    clearError = () => {this.setState({ trxError: undefined })};
 
     errorCallback = estr => { this.setState({ trxError: estr, loading: false }) };
 
@@ -111,12 +112,12 @@ class TransferForm extends Component {
         e.preventDefault();
         // Convert '9.999 STEEM' to 9.999
         this.state.amount.props.onChange(this.balanceValue().split(' ')[0])
-    }
+    };
 
     onChangeTo = (e) => {
         const {value} = e.target;
         this.state.to.props.onChange(value.toLowerCase().trim())
-    }
+    };
 
     render() {
         const {to, amount, asset, memo} = this.state;
@@ -287,7 +288,7 @@ export default connect(
                     dispatch({type: 'user/LOAD_SAVINGS_WITHDRAW', payload: {}})
                 }
                 dispatch(user.actions.hideTransfer())
-            }
+            };
             const asset2 = toVesting ? 'STEEM' : asset;
             const operation = {
                 from: username,
