@@ -3,14 +3,10 @@ var path = require('path');
 var Sequelize = require('sequelize');
 var basename = path.basename(module.filename);
 var env = process.env.NODE_ENV || 'development';
-var config = require(__dirname + '/../../config').default.db;
+var config = require('config');
 var db = {};
 
-if (config.use_env_variable) {
-    var sequelize = new Sequelize(process.env[config.use_env_variable]);
-} else {
-    var sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+var sequelize = new Sequelize(config.get('database_url'));
 
 fs.readdirSync(__dirname)
     .filter(function (file) {
@@ -30,9 +26,16 @@ Object.keys(db).forEach(function (modelName) {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+if(env === 'development') {
+    // in dev, sync all table schema automatically for convenience
+    sequelize.sync();
+}
+
+
 function esc(value, max_length = 256) {
     if (!value) return '';
     if (typeof value === 'number') return value;
+    if (typeof value === 'boolean') return value;
     if (typeof value !== 'string') return '(object)';
     let res = value.substring(0, max_length - max_length * 0.2).replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
         switch (char) {
@@ -42,8 +45,7 @@ function esc(value, max_length = 256) {
                 return '\\b';
             case '\x09':
                 return '\\t';
-            case '\x1a':
-                return '\\z';
+            case '\x1a': return '\\z';
             case '\n':
                 return '\\n';
             case '\r':
