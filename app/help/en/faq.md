@@ -18,14 +18,15 @@
 ### Accounts
 - <a href="/faq.html#How_do_I_create_an_account">How do I create an account?</a>
 - <a href="/faq.html#What_information_do_I_need_to_provide_in_order_to_create_an_account">What information do I need to provide in order to create an account?</a>
+- <a href="/faq.html#How_long_does_the_account_approval_process_take">How long does the account approval process take?</a>
 - <a href="/faq.html#Why_do_I_need_to_provide_my_email_and_phone_number">Why do I need to provide my email and phone number?</a>
 - <a href="/faq.html#Can_I_create_a_Steem_account_without_an_email_and_phone_number">Can I create a Steem account without an email and phone number?</a>
 - <a href="/faq.html#What_are_other_ways_to_create_an_account_on_the_blockchain_besides_using_Steemit_com">What are other ways to create an account on the blockchain besides using Steemit.com?</a>
 - <a href="/faq.html#It_is_not_letting_me_create_an_account_with_my_phone_number__What_should_I_do">It is not letting me create an account with my phone number. What should I do?</a>
 - <a href="/faq.html#What_happens_if_my_email_or_phone_number_changes">What happens if my email or phone number changes?</a>
+- <a href="/faq.html#Am_I_allowed_to_create_more_than_one_account">Am I allowed to create more than one account</a>
 - <a href="/faq.html#Can_I_delete_or_deactivate_my_account">Can I delete or deactivate my account?</a>
 
-<a class="anchor" name="Table_of_Contents_Community"></a>
 ### Community
 - <a href="/faq.html#Is_there_an_Etiquette_Guide_for_Steemit">Is there an Etiquette Guide for Steemit?</a>
 - <a href="/faq.html#Am_I_required_to_verify_my_identity">Am I required to verify my identity?</a>
@@ -59,6 +60,7 @@
 - <a href="/faq.html#What_are_tags">What are tags?</a>
 - <a href="/faq.html#What_tags_should_I_use">What tags should I use?</a>
 - <a href="/faq.html#How_many_tags_can_I_use">How many tags can I use?</a>
+- <a href="/faq.html#Why_is_the_Post_button_grayed_out">Why is the "Post" button grayed out?</a>
 - <a href="/faq.html#How_do_I_format_text_in_Markdown">How do I format text in Markdown?</a>
 - <a href="/faq.html#How_often_can_I_post">How often can I post?</a>
 - <a href="/faq.html#How_long_can_my_post_be">How long can my post be?</a>
@@ -83,8 +85,10 @@
 - <a href="/faq.html#Why_do_the_earnings_for_my_post_go_up_or_down">Why do the earnings for my post go up or down?</a>
 - <a href="/faq.html#When_can_I_claim_my_rewards">When can I claim my rewards?</a>
 - <a href="/faq.html#What_is_the_difference_between_STEEM__STEEM_Power__and_Steem_Dollars">What is the difference between STEEM, STEEM Power, and Steem Dollars?</a>
+- <a href="/faq.html#What_is_delegated_STEEM_Power">What is delegated STEEM Power?</a>
 - <a href="/faq.html#What_determines_the_price_of_STEEM">What determines the price of STEEM?</a>
 - <a href="/faq.html#How_do_I_get_more_STEEM_Power">How do I get more STEEM Power?</a>
+- <a href="/faq.html#How_long_does_it_take_STEEM_or_STEEM_Power_that_I_purchased_to_show_up_in_my_account">How long does it take STEEM or STEEM Power that I purchased to show up in my account?</a>
 - <a href="/faq.html#What_is_powering_up_and_down">What is powering up and down?</a>
 - <a href="/faq.html#Will_1_Steem_Dollar_always_be_worth__1_00_USD">Will 1 Steem Dollar always be worth $1.00 USD?</a>
 - <a href="/faq.html#How_do_Steem_Dollar_to_STEEM_conversions_work">How do Steem Dollar to STEEM conversions work?</a>
@@ -107,6 +111,7 @@
 - <a href="/faq.html#What_determines_how_much_of_the_curation_reward_goes_to_the_author_versus_curators">What determines how much of the curation reward goes to the author versus curators?</a>
 - <a href="/faq.html#Can_I_get_curation_rewards_for_upvoting_comments">Can I get curation rewards for upvoting comments?</a>
 - <a href="/faq.html#Do_I_get_curation_rewards_for_downvoting_posts_or_comments">Do I get curation rewards for downvoting posts or comments?</a>
+- <a href="/faq.html#What_are_curation_trails">What are curation trails?</a>
 - <a href="/faq.html#Why_don_t_my_upvotes_have_an_effect_on_a_post_s_rewards">Why don't my upvotes have an effect on a post's rewards?</a>
 - <a href="/faq.html#Is_there_a_way_to_make_my_votes_count_for_more">Is there a way to make my votes count for more?</a>
 - <a href="/faq.html#What_are_the_valid_reasons_for_downvoting">What are the valid reasons for downvoting?</a>
@@ -116,7 +121,7 @@
 
 <a class="anchor" name="Table_of_Contents_Plagiarism__Spam__and_Abuse"></a>
 ### Plagiarism, Spam, and Abuse
-- <a href="/faq.html#What_are_Steemit_s_policies_on_plagiarism_and_spam">What are Steemits policies on plagiarism and spam?</a>
+- <a href="/faq.html#What_are_Steemit_s_policies_on_plagiarism_and_spam">What are Steemit’s policies on plagiarism and spam?</a>
 - <a href="/faq.html#Is_it_okay_to_use_random_pictures_from_the_internet">Is it okay to use random pictures from the internet?</a>
 - <a href="/faq.html#What_is_Steemcleaners">What is Steemcleaners?</a>
 - <a href="/faq.html#What_is__cheetah">What is @cheetah?</a>
@@ -151,7 +156,7 @@
 ### Steemit, Inc.
 - <a href="/faq.html#Who_are_the_Steemit_co_founders">Who are the Steemit co-founders?</a>
 - <a href="/faq.html#Can_I_invest_in_Steemit">Can I invest in Steemit?</a>
-- <a href="/faq.html#What_does_Steemit_s_development_roadmap_look_like">What does Steemits development roadmap look like?</a>
+- <a href="/faq.html#What_does_Steemit_s_development_roadmap_look_like">What does Steemit’s development roadmap look like?</a>
 - <a href="/faq.html#Am_I_allowed_to_use_the_Steemit_logo">Am I allowed to use the Steemit logo?</a>
 - <a href="/faq.html#Can_I_purchase_official_Steemit_merchandise">Can I purchase official Steemit merchandise?</a>
 - <a href="/faq.html#Did_Steemit__pre_mine__tokens">Did Steemit "pre-mine" tokens?</a>
@@ -267,11 +272,23 @@ It is best to have realistic expectations, without focusing on rewards when you 
 
 Click on the "Sign Up" link at the top of Steemit.com to get started.
 
+You will be asked to verify your email address and phone number. After your email address and phone number have been verified, you will be added to the waiting list. You will be notified via email once your account is approved.
+
+After you receive notification that your account is approved, click on the link in the email to finish the account creation process. Be sure to save and backup your username and password. It is very important that you do not lose your password. There is no way to recover your password or access your account if it is lost. Once your password is saved and backed up, click on the "Create Account" button to create the account.
+
 <a href="/faq.html#Table_of_Contents_Accounts">^</a>
 <a class="anchor" name="What_information_do_I_need_to_provide_in_order_to_create_an_account"></a>
 ## What information do I need to provide in order to create an account?
 
 You will need to provide your email address and phone number.
+
+<a href="/faq.html#Table_of_Contents_Accounts">^</a>
+<a class="anchor" name="How_long_does_the_account_approval_process_take"></a>
+## How long does the account approval process take?
+
+Most accounts are approved within 24 hours. Some may take up to three business days.
+
+If your account has not been approved after three business days, please ask for help in the <a href="https://steemit.chat/channel/help">#help</a> channel on <a href="https://steemit.chat/home">steemit.chat</a>.
 
 <a href="/faq.html#Table_of_Contents_Accounts">^</a>
 <a class="anchor" name="Why_do_I_need_to_provide_my_email_and_phone_number"></a>
@@ -283,15 +300,17 @@ To create an account on the blockchain, it costs STEEM tokens. When you create a
 <a class="anchor" name="Can_I_create_a_Steem_account_without_an_email_and_phone_number"></a>
 ## Can I create a Steem account without an email and phone number?
 
-The only way to have an account created via Steemit.com is to supply your email and phone number. Because Steem is an open and permissionless network, there are other ways to create a Steem account. Any Steem account can be used on Steemit.com
+The only way to have an account created via Steemit.com is to supply your email and phone number. Because Steem is an open and permissionless network, there are other ways to create a Steem account. Any Steem blockchain account can be used on Steemit.com
 
 <a href="/faq.html#Table_of_Contents_Accounts">^</a>
 <a class="anchor" name="What_are_other_ways_to_create_an_account_on_the_blockchain_besides_using_Steemit_com"></a>
 ## What are other ways to create an account on the blockchain besides using Steemit.com?
 
-If you are willing to pay your own signup fee, then there are other ways to create a new account on the blockchain. If you are not sure how to do this, you can ask for help in the <a href="https://steemit.chat/channel/help">#help</a> channel on <a href="https://steemit.chat/home">steemit.chat</a>.
+If you are willing to pay your own signup fee, then there are other ways to create a new account on the blockchain.
 
-There is also a third-party tool called <a href="https://steemit.com/steemit/@someguy123/anonsteem-create-anonymous-steem-accounts-without-social-media">AnonSteem</a> that accepts bitcoin and Litecoin to anonymously create a Steem account.
+There is a third-party tool called <a href="https://steemit.com/steemit/@someguy123/anonsteem-create-anonymous-steem-accounts-without-social-media">AnonSteem</a> that accepts bitcoin, Litecoin, STEEM, or SBD to anonymously create a Steem account. You do not need to have an existing Steem blockchain account to use the service, but there is a charge on top of the blockchain account creation fee for using the service.
+
+There is also a third-party tool called <a href="https://steemit.com/news/@timcliff/new-tool-from-busy-org-create-new-steem-blockchain-accounts-with-steemconnect">SteemConnect</a> that allows you to create accounts by paying or delegating the account creation fee. There is no additional fee to use the service, but does require an existing Steem blockchain account to pay the account creation fee to create the account.
 
 <a href="/faq.html#Table_of_Contents_Accounts">^</a>
 <a class="anchor" name="It_is_not_letting_me_create_an_account_with_my_phone_number__What_should_I_do"></a>
@@ -304,6 +323,12 @@ Ask for help in the <a href="https://steemit.chat/channel/help">#help</a> channe
 ## What happens if my email or phone number changes?
 
 Currently there is no way to change the email or phone number that is linked to your account.  Though once your account is created, you can continue to use it even if the email or phone number that is linked to the account has changed.
+
+<a href="/faq.html#Table_of_Contents_Accounts">^</a>
+<a class="anchor" name="Am_I_allowed_to_create_more_than_one_account"></a>
+## Am I allowed to create more than one account?
+
+Each user is allowed only one paid-for account created via Steemit.com, however users are allowed to create multiple accounts on the blockchain. Creating additional accounts on the blockchain requires users to pay their own account creation fee for any additional accounts.
 
 <a href="/faq.html#Table_of_Contents_Accounts">^</a>
 <a class="anchor" name="Can_I_delete_or_deactivate_my_account"></a>
@@ -533,7 +558,7 @@ Try to use tags that are relevant to your post, and that will be popular for oth
 
 You can browse through commonly used tags using the "Explore" link, in the main menu.
 
-Be mindful when choosing tags. If your tags arent related to your post, your post may get downvotes for mistagging.
+Be mindful when choosing tags. If your tags aren’t related to your post, your post may get downvotes for mistagging.
 
 All tags must be lowercase letters. Spaces aren't allowed, but hyphenated words with a single dash are.
 
@@ -542,6 +567,12 @@ All tags must be lowercase letters. Spaces aren't allowed, but hyphenated words 
 ## How many tags can I use?
 
 You can use up to 5 tags per post.
+
+<a href="/faq.html#Table_of_Contents_Posting">^</a>
+<a class="anchor" name="Why_is_the_Post_button_grayed_out"></a>
+## Why is the "Post" button grayed out?
+
+A post must have a title, body, and at least one valid tag. If any of these are missing, then the "Post" button will be disabled.
 
 <a href="/faq.html#Table_of_Contents_Posting">^</a>
 <a class="anchor" name="How_do_I_format_text_in_Markdown"></a>
@@ -602,7 +633,7 @@ The blockchain will always contain the full edit history of posts and comments, 
 <a class="anchor" name="What_does__Promoting__a_post_do"></a>
 ## What does "Promoting" a post do?
 
-When you make a post, there is the option to promote it with Steem Dollars. It will then show up in the Promoted tab. The order that it appears in the list depends on how much the post was promoted for. Posts with a higher promoted amount will be higher than posts with less.
+When you make a post, there is the option to promote it with Steem Dollars. It will then show up in the “Promoted” tab. The order that it appears in the list depends on how much the post was promoted for. Posts with a higher promoted amount will be higher than posts with less.
 
 Steem Dollars spent to promote a post are paid to the account @null, which nobody owns or controls. Once a user transfers SBD to @null, the Steem blockchain removes them from the currency supply. Details can be found in this <a href="https://steemit.com/steemit/@steemitblog/introducing-promoted-content">official post</a>.
 
@@ -612,7 +643,7 @@ You can promote your own posts, or posts that you like from other users.
 <a class="anchor" name="How_do_I_promote_a_post"></a>
 ## How do I promote a post?
 
-At the bottom of each post is a button to "Promote". After clicking the button, type the number of Steem Dollars that you want to spend and click PROMOTE. The operation will require your master password or active key.
+At the bottom of each post is a button to "Promote". After clicking the button, type the number of Steem Dollars that you want to spend and click “PROMOTE”. The operation will require your master password or active key.
 
 <a href="/faq.html#Table_of_Contents_Posting">^</a>
 # Comments
@@ -698,9 +729,19 @@ Posts and comments remain active for 7 days. When the period is over, you are ab
 
 **STEEM** - STEEM is the base liquid currency token in the platform. STEEM can be powered up into STEEM Power, traded for Steem Dollars, and transferred to other accounts. It is a cryptocurrency token, similar to bitcoin.
 
-**STEEM Power** - STEEM Power (abbreviated SP) is a measurement of how much influence a user has in the Steem network. The more STEEM Power a user holds, the more they can influence the value of posts and comments. STEEM Power is less liquid. If a user wishes to Power Down SP, they will receive equal distributions of the STEEM weekly, over a 13 week period.
+**STEEM Power** - STEEM Power (abbreviated SP) is a measurement of how much influence a user has in the Steem network. The more STEEM Power a user holds, the more they can influence the value of posts and comments. STEEM Power is less liquid. If a user wishes to “Power Down” SP, they will receive equal distributions of the STEEM weekly, over a 13 week period.
 
 **Steem Dollars** - Steem Dollars (commonly abbreviated SBD) are liquid stable-value currency tokens designed to be pegged to $1 USD. Steem Dollars can be traded with STEEM, and transferred to other accounts for commerce or exchange.  Steem Dollars may also be converted into STEEM in a process that takes 3.5 days. Steem Dollars can be used to buy things in marketplaces, such as PeerHub.com.
+
+<a href="/faq.html#Table_of_Contents_Economics">^</a>
+<a class="anchor" name="What_is_delegated_STEEM_Power"></a>
+## What is delegated STEEM Power?
+
+Users have the option to delegate STEEM Power to other users. When a user is delegated STEEM Power, their content votes and curation rewards are calculated as if it were their own STEEM Power. Users are not able to power down or cash out delegated STEEM Power, as it still belongs to the original owner.
+
+Most users will have a small amount of STEEM Power delegated to them by the Steemit account after creating an account via Steemit.com.
+
+Delegated STEEM Power shows up in a user's wallet below their actual STEEM Power balance in parentheses.
 
 <a href="/faq.html#Table_of_Contents_Economics">^</a>
 <a class="anchor" name="What_determines_the_price_of_STEEM"></a>
@@ -714,16 +755,24 @@ The price of STEEM is based on the supply and demand of the token, determined by
 
 With STEEM tokens in your wallet, click "Power Up" to turn them into STEEM Power. If you have Steem Dollars, you can convert them to STEEM from your wallet.
 
-If you dont already have STEEM or Steem Dollars in your wallet, you can purchase them using bitcoin (BTC), ether (ETH), or BitShares (BTS) tokens. You may purchase BTC on various exchanges, such as Coinbase.com or Localbitcoins.com.
+If you don’t already have STEEM or Steem Dollars in your wallet, you can purchase them using bitcoin (BTC), ether (ETH), or BitShares (BTS) tokens. You may purchase BTC on various exchanges, such as Coinbase.com or Localbitcoins.com.
 
 To buy:
-- Click Buy Steem from the main menu in the top right corner of Steemit.com, or from your wallet.
+- Click “Buy Steem” from the main menu in the top right corner of Steemit.com, or from your wallet.
 - Select whether you want to buy STEEM or STEEM Power.
 - Select the currency to deposit, and the amount of that currency you wish to use. Then send the currency to the provided address.
 
 STEEM purchases made on Steemit.com are facilitated by <a href="https://blocktrades.us">BlockTrades</a>.
 
 bitcoin can also be exchanged for STEEM on external markets such as <a href="https://poloniex.com">Poloniex</a>, <a href="https://bittrex.com">Bittrex</a>, <a href="https://shapeshift.io">ShapeShift.io</a>, and <a href="https://changelly.com">Changelly</a>.
+
+<a href="/faq.html#Table_of_Contents_Economics">^</a>
+<a class="anchor" name="How_long_does_it_take_STEEM_or_STEEM_Power_that_I_purchased_to_show_up_in_my_account"></a>
+## How long does it take STEEM or STEEM Power that I purchased to show up in my account?
+
+Transactions on the Steem blockchain typically only take about three seconds to process, but when you are purchasing the STEEM tokens using bitcoin or some other token, then the transaction must wait for the transaction to be confirmed on the other network. This can often take several hours, and sometimes even days.
+
+If you paid using bitcoin, the third party website <a href="https://bitcoinfees.21.co/">bitcoinfees.21.co</a> can estimate the approximate wait time of the transaction based on the fees that were paid. The third party website <a href="https://blockchain.info/">blockchain.info</a> will lookup the fees that were paid on a specific blockchain transaction.
 
 <a href="/faq.html#Table_of_Contents_Economics">^</a>
 <a class="anchor" name="What_is_powering_up_and_down"></a>
@@ -792,7 +841,7 @@ https://steemit.com/steemit/@ash/steemit-how-to-sell-steem-dollars-via-poloniex-
 #### Withdraw Steem Dollars to a Bitcoin address
 https://steemit.com/steem-help/@piedpiper/how-to-withdraw-your-steem-dollars-in-less-that-a-minute
 
-#### Convert Steem Dollars to a countrys currency and withdraw to a bank account
+#### Convert Steem Dollars to a country’s currency and withdraw to a bank account
 https://steemit.com/tutorial/@beanz/how-to-get-my-usdteemit-money-into-my-bank-account
 
 #### Convert STEEM to many other cryptocurrencies via ShapeShift
@@ -881,6 +930,12 @@ Yes. You can earn curation rewards from upvoting both posts and comments!
 No. Since downvoting reduces the rewards on a post/comment, it does not earn curation rewards.
 
 <a href="/faq.html#Table_of_Contents_Voting_and_Curating">^</a>
+<a class="anchor" name="What_are_curation_trails"></a>
+## What are curation trails?
+
+Some users decide to use third party applications such as <a href="https://streemian.com/">Streemian</a> to automatically cast votes. Users can automatically vote for the same posts and comments that other users does. Typically they will set this up to follow the votes of users who are good at curating. When a user has other users automatically voting for the same content that they do, the people that automatically vote after them are called their "curation trail".
+
+<a href="/faq.html#Table_of_Contents_Voting_and_Curating">^</a>
 <a class="anchor" name="Why_don_t_my_upvotes_have_an_effect_on_a_post_s_rewards"></a>
 ## Why don't my upvotes have an effect on a post's rewards?
 
@@ -924,9 +979,9 @@ With the current implementation, there is no difference between a downvote and a
 # Plagiarism, Spam, and Abuse
 
 <a class="anchor" name="What_are_Steemit_s_policies_on_plagiarism_and_spam"></a>
-## What are Steemits policies on plagiarism and spam?
+## What are Steemit’s policies on plagiarism and spam?
 
-If you are posting plagiarized or copied content, you can get in legal trouble for violating copyright laws. Plagiarized posts and spam are seen as abuse and will be downvoted by community members. If you are posting or using someone elses content, you must ensure that you have the rights to use the content, and properly reference the sources where you got the material from.
+If you are posting plagiarized or copied content, you can get in legal trouble for violating copyright laws. Plagiarized posts and spam are seen as abuse and will be downvoted by community members. If you are posting or using someone else’s content, you must ensure that you have the rights to use the content, and properly reference the sources where you got the material from.
 
 <a href="/faq.html#Table_of_Contents_Plagiarism__Spam__and_Abuse">^</a>
 <a class="anchor" name="Is_it_okay_to_use_random_pictures_from_the_internet"></a>
@@ -934,7 +989,7 @@ If you are posting plagiarized or copied content, you can get in legal trouble f
 
 If you are using an image that is not your own, make sure you are allowed to use the image, and cite the source of the image.
 
-Using random pictures from the internet without giving credit is discouraged. You may, however, use photos from free image websites such as Pexels.com or Pixabay.com. All photos on Pexels and Pixabay are free for personal and commercial use.
+Using random pictures from the internet without giving credit is discouraged. You may, however, use photos from “free image” websites such as Pexels.com or Pixabay.com. All photos on Pexels and Pixabay are free for personal and commercial use.
 
 Here is a post from @mindover that has links to many websites that have images you can use:
 https://steemit.com/steem-help/@mindover/don-t-plagiarize-images-here-are-13-free-and-legal-ways-to-find-high-quality-photos-you-can-use-on-steemit
@@ -952,7 +1007,7 @@ https://steemit.com/steemcleaners/@steemcleaners/announcing-steemcleaners-the-st
 
 @cheetah is a bot developed by @anyx that scours Steemit for copy/pasted content. Cheetah will not downvote copied content, but it alerts other users to look into it further.
 
-Abusive accounts (serial plagiarists or identity thieves, for example) will go on Cheetahs blacklist. These users will get downvoted by @cheetah accounts when they post.
+Abusive accounts (serial plagiarists or identity thieves, for example) will go on Cheetah’s blacklist. These users will get downvoted by @cheetah accounts when they post.
 
 More information on the @cheetah bot can be found in this post:
 https://steemit.com/steemitabuse/@cheetah/cheetah-bot-explained
@@ -1005,9 +1060,9 @@ The only way for your reputation score to go down is to be downvoted by another 
 <a class="anchor" name="Why_does_my_reputation_score_matter"></a>
 ## Why does my reputation score matter?
 
-A reputation score is one way Steemit measures the amount of value you have brought to the community. In real estate, they say there are three variables of the utmost importance: location, location, location. On Steemit, those things are: reputation, reputation, reputation. Its not to say other variables arent important, but reputation will be an enormous factor in your level of success.
+A reputation score is one way Steemit measures the amount of value you have brought to the community. In real estate, they say there are three variables of the utmost importance: location, location, location. On Steemit, those things are: reputation, reputation, reputation. It’s not to say other variables aren’t important, but reputation will be an enormous factor in your level of success.
 
-Many Steemians glance at users reputation scores when deciding which articles to read because they know higher reputation scores means it is much more likely quality content. Furthermore, the higher your rep, the more effect your vote will have on the reputation of others.
+Many Steemians glance at users’ reputation scores when deciding which articles to read because they know higher reputation scores means it is much more likely quality content. Furthermore, the higher your rep, the more effect your vote will have on the reputation of others.
 
 It is worth noting that if your reputation score goes below 0, Steemit will hide your posts and comments making it very difficult to gain monetary rewards and followers. This incentivizes online etiquette and respect for your fellow Steemians.
 
@@ -1043,7 +1098,7 @@ The Steem blockchain is the publicly accessible distributed database, which reco
 <a class="anchor" name="What_is_the_difference_between_Steem_and_Steemit"></a>
 ## What is the difference between Steem and Steemit?
 
-Steem is the name of the blockchain that stores all of the data and transactions, and processes all of the events that take place. STEEM is also a name for the systems value token (currency).
+Steem is the name of the blockchain that stores all of the data and transactions, and processes all of the events that take place. STEEM is also a name for the system’s value token (currency).
 
 Steemit is a front end web interface to interact with the blockchain, and view the blockchain data.
 
@@ -1111,7 +1166,7 @@ Though not considered an investment, you can purchase STEEM tokens which can go 
 
 <a href="/faq.html#Table_of_Contents_Steemit__Inc">^</a>
 <a class="anchor" name="What_does_Steemit_s_development_roadmap_look_like"></a>
-## What does Steemits development roadmap look like?
+## What does Steemit’s development roadmap look like?
 
 You can view the 2017 Roadmap here:
 https://steemit.com/steemit/@steemitblog/steemit-2017-roadmap
@@ -1274,7 +1329,7 @@ https://steemit.com/steemhelp/@pfunk/a-learner-s-guide-to-using-steem-s-cliwalle
 
 The Steem blockchain requires a set of people to create blocks and uses a consensus mechanism called delegated proof of stake, or DPOS. The community elects 'witnesses' to act as the network's block producers and governance body. There are 20 full-time witnesses, producing a block every 63-second round. A 21st position is shared by backup witnesses, who are scheduled proportionally to the amount of stake-weighted community approval they have. Witnesses are compensated with STEEM Power for each block they create.
 
-Steemit leverages Steem because the founders of Steemit believe Steems decentralized text content storage and governance model makes Steem an excellent platform for supporting the long term success of its social network and digital currency tokens.
+Steemit leverages Steem because the founders of Steemit believe Steem’s decentralized text content storage and governance model makes Steem an excellent platform for supporting the long term success of its social network and digital currency tokens.
 
 <a href="/faq.html#Table_of_Contents_Witnesses">^</a>
 <a class="anchor" name="How_can_I_vote_for_witnesses"></a>
@@ -1314,7 +1369,7 @@ https://twitter.com/steemit
 
 The Steem Whitepaper was written to describe the mechanics of the token system that makes decentralized content incentives and distribution possible in a way that can improve web technologies across the board. It is also applicable to Steemit, the first website to plug into the Steem blockchain. Users who have read the Steem Whitepaper will better understand how their interactions with Steemit are interactions with Steem, the decentralized network.
 
-It is worth noting that the Whitepaper hasnt been updated almost since Steem came into existence. Many changes have been made since then, so much of the Whitepaper is now out of date. It is in the process of being rewritten.
+It is worth noting that the Whitepaper hasn’t been updated almost since Steem came into existence. Many changes have been made since then, so much of the Whitepaper is now out of date. It is in the process of being rewritten.
 
 https://steem.io/SteemWhitePaper.pdf
 
@@ -1333,7 +1388,7 @@ You can also create a post on Steemit.com with the tag #help, and someone in the
 <a class="anchor" name="Third_Party_References_and_User_Links"></a>
 ## Third Party References and User Links
 
-BlockTrades, Poloniex, Bittrex, Changelly, Shapeshift.io, Coinbase, Localbitcoins, SteemDB, PeerHub, Steemit.chat, SteemTools, AnonSteem, SteemStats, Pixabay, Steemcleaners, Pexels, Postimage, Markdown Cheatsheet, @cheetah, Bitcointalk, and steemd are third party applications/services, and are not owned or maintained by Steemit, Inc. Their listing here, as well as any other third party applications or websites that are listed, does not constitute and endorsement or recommendation on behalf of Steemit, Inc.
+BlockTrades, Poloniex, Bittrex, Changelly, Shapeshift.io, Coinbase, Localbitcoins, SteemDB, PeerHub, Steemit.chat, SteemTools, AnonSteem, SteemConnect, Streemian, SteemStats, Pixabay, Steemcleaners, Pexels, Postimage, Markdown Cheatsheet, @cheetah, Bitcointalk, bitcoinfees, blockchain.info, and steemd are third party applications/services, and are not owned or maintained by Steemit, Inc. Their listing here, as well as any other third party applications or websites that are listed, does not constitute and endorsement or recommendation on behalf of Steemit, Inc.
 
 All links to user posts were created by our users and do not necessarily represent the views of Steemit, Inc. or its management. Their listing here does not constitute and endorsement or recommendation on behalf of Steemit, Inc.
 
