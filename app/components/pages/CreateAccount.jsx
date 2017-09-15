@@ -248,7 +248,7 @@ class CreateAccount extends React.Component {
             <div>
                 <div className="CreateAccount row">
                     <div className="column">
-                        <h4>Please read Steemit Rules and fill up the form below to create your Steemit account</h4>
+                        <h4>Please read the Steemit Rules and fill in the form below to create your Steemit account</h4>
                         {/*<Progress tabIndex="0" value={95} max={100} />*/}
                         {showRules ? <div className="CreateAccount__rules">
                             <p>
@@ -288,7 +288,7 @@ class CreateAccount extends React.Component {
                             </div>
                             { // TODO: remove this after May 20th
                                 this.state.account_has_keys_warning && <div className="warning">
-                                    Please note: due to recent security changes if you chosen a password before during signup, this one below will override it — this is the one you need to save.
+                                    Please note: due to recent security changes if you chosen a password before during signup, this one below will override it  this is the one you need to save.
                                 </div>
                             }
                             <GeneratedPasswordInput onChange={this.onPasswordChange} disabled={loading} showPasswordString={this.state.showPass} />
