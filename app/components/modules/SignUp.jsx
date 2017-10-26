@@ -17,7 +17,7 @@ class SignUp extends React.Component {
                 </div>
             </div>;
         }
-
+        
         if (this.props.serverBusy || $STM_Config.disable_signups) {
             return <div className="row">
                 <div className="column callout" style={{margin: '20px', padding: '40px'}}>

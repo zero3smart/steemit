@@ -1,4 +1,4 @@
-# Steemit FAQ
+# Steemit FAQ 
 
 <a class="anchor" name="Table_of_Contents"></a>
 ## Table of Contents
@@ -382,7 +382,7 @@ These are various ways to sort Steem posts.
 <a class="anchor" name="What_information_is_available_in_my_account_menu"></a>
 ## What information is available in my account menu?
 
-You can get to your account menu by clicking on the avatar icon in the top-right corner of a Steemit.com page.
+You can get to your account menu by clicking on the avatar icon in the top-right corner of a Steemit.com page. 
 
 **Feed** - Here is where you go to see the most recent posts from the people you follow.
 
@@ -429,7 +429,7 @@ Your savings balance is STEEM and SBD tokens that are subject to 3 day withdraw 
 ## How do I send money to another user?
 
 - From your wallet page, click the STEEM or Steem Dollar balances with the down arrow next to them.
-- In the drop-down menu, click 'Transfer'.
+- In the drop-down menu, click 'Transfer'. 
 - Type the username of the account you want to send the STEEM or Steem Dollars to. Double and triple check spelling.
 - Enter the amount of STEEM or Steem Dollars to send.
 - Enter a memo to go along with the transaction (optional).
@@ -534,7 +534,7 @@ Pictures can also be hosted on an external site. Paste the image's web address (
 <a class="anchor" name="How_do_I_add_videos_to_my_posts"></a>
 ## How do I add videos to my posts?
 
-To add a YouTube or Vimeo video to your blog post, simply paste the link to the video into the post.
+To add a YouTube or Vimeo video to your blog post, simply paste the link to the video into the post. 
 
 You can also read <a href="https://steemit.com/steemitguide/@algimantas/detailed-guide-how-to-add-videos-in-steemit">this guide</a> from @algimantas, which has more detailed instructions:
 
@@ -566,7 +566,7 @@ All tags must be lowercase letters. Spaces aren't allowed, but hyphenated words 
 <a class="anchor" name="How_many_tags_can_I_use"></a>
 ## How many tags can I use?
 
-You can use up to 5 tags per post.
+You can use up to 5 tags per post. 
 
 <a href="/faq.html#Table_of_Contents_Posting">^</a>
 <a class="anchor" name="Why_is_the_Post_button_grayed_out"></a>
@@ -613,7 +613,7 @@ Post sizes are limited to about 64,000 characters including formatting. This is 
 <a class="anchor" name="If_posting_in_a_language_other_than_English__how_will_I_get_recognized"></a>
 ## If posting in a language other than English, how will I get recognized?
 
-You can use language-specific tags to help you to reach the audience that speaks your language.
+You can use language-specific tags to help you to reach the audience that speaks your language. 
 
 Language-specific groups include:
 - Chinese = cn
@@ -678,8 +678,8 @@ Starting with the network's 16th hard fork in December 2016, Steem began creatin
 ## How are the new tokens distributed?
 
 Out of the new tokens that are generated:
-- 75% go to the reward pool, which is split between authors and curators.
-- 15% of the new tokens are awarded to holders of STEEM Power.
+- 75% go to the reward pool, which is split between authors and curators. 
+- 15% of the new tokens are awarded to holders of STEEM Power. 
 - The remaining 10% pays for the witnesses to power the blockchain.
 
 <a href="/faq.html#Table_of_Contents_Economics">^</a>
@@ -698,7 +698,7 @@ Up to 25% of a post's payout is awarded to curators (the people who upvoted the 
 <a class="anchor" name="Will_the_reward_pool_pay_out_more_or_less_depending_on_who_votes"></a>
 ## Will the reward pool pay out more or less depending on who votes?
 
-When users upvote or downvote posts, they are not adding or taking money away from the reward pool. They are only changing how the pool is allocated. The same amount of rewards will be paid out no matter what.
+When users upvote or downvote posts, they are not adding or taking money away from the reward pool. They are only changing how the pool is allocated. The same amount of rewards will be paid out no matter what. 
 
 Votes in Steem are stake-weighted. Therefore voters with more STEEM Power have a greater influence over the allocation than voters with less SP, but higher-staked votes do not increase rewards overall.
 
@@ -755,7 +755,7 @@ The price of STEEM is based on the supply and demand of the token, determined by
 
 With STEEM tokens in your wallet, click "Power Up" to turn them into STEEM Power. If you have Steem Dollars, you can convert them to STEEM from your wallet.
 
-If you don’t already have STEEM or Steem Dollars in your wallet, you can purchase them using bitcoin (BTC), ether (ETH), or BitShares (BTS) tokens. You may purchase BTC on various exchanges, such as Coinbase.com or Localbitcoins.com.
+If you don’t already have STEEM or Steem Dollars in your wallet, you can purchase them using bitcoin (BTC), ether (ETH), or BitShares (BTS) tokens. You may purchase BTC on various exchanges, such as Coinbase.com or Localbitcoins.com. 
 
 To buy:
 - Click “Buy Steem” from the main menu in the top right corner of Steemit.com, or from your wallet.
@@ -770,7 +770,7 @@ bitcoin can also be exchanged for STEEM on external markets such as <a href="htt
 <a class="anchor" name="How_long_does_it_take_STEEM_or_STEEM_Power_that_I_purchased_to_show_up_in_my_account"></a>
 ## How long does it take STEEM or STEEM Power that I purchased to show up in my account?
 
-Transactions on the Steem blockchain typically only take about three seconds to process, but when you are purchasing the STEEM tokens using bitcoin or some other token, then the transaction must wait for the transaction to be confirmed on the other network. This can often take several hours, and sometimes even days.
+Transactions on the Steem blockchain typically only take about three seconds to process, but when you are purchasing the STEEM tokens using bitcoin or some other token, then the transaction must wait for the transaction to be confirmed on the other network. This can often take several hours, and sometimes even days.    
 
 If you paid using bitcoin, the third party website <a href="https://bitcoinfees.21.co/">bitcoinfees.21.co</a> can estimate the approximate wait time of the transaction based on the fees that were paid. The third party website <a href="https://blockchain.info/">blockchain.info</a> will lookup the fees that were paid on a specific blockchain transaction.
 
@@ -831,7 +831,7 @@ Other than making a post and making sales manually, there is no interface for se
 
 STEEM and SBD tokens are readily tradable to bitcoin, which is readily tradable to the local currency of your choice.
 
-There are several guides that have been posted by users in the community for using various exchanges to withdraw STEEM and SBD tokens. Please read the <a href="/faq.html#Disclaimer">disclaimer</a> before using any of these guides to withdraw your coins. The users, guides, and exchanges listed in the guides are not endorsed by Steemit, Inc. Use the guides below at your own risk.
+There are several guides that have been posted by users in the community for using various exchanges to withdraw STEEM and SBD tokens. Please read the <a href="/faq.html#Disclaimer">disclaimer</a> before using any of these guides to withdraw your coins. The users, guides, and exchanges listed in the guides are not endorsed by Steemit, Inc. Use the guides below at your own risk. 
 
 It is recommended that you withdraw a small amount first, to verify it works before withdrawing a larger amount.
 
@@ -889,7 +889,7 @@ You can use up to 40 full strength votes within a 24 hour period without depleti
 <a class="anchor" name="Can_I_vote_with_less_than_100__of_my_voting_strength"></a>
 ## Can I vote with less than 100% of my voting strength?
 
-New users can only upvote and downvote with 100% voting strength.
+New users can only upvote and downvote with 100% voting strength. 
 
 Once you reach about 500 STEEM Power, you will see a vote slider appear when you vote. You can use the slider to adjust the weight of your vote, between 1% and 100% voting strength. Voting with less than 100% voting weight will use up less voting power, but it will also have less of an influence on the post or comment's rewards.
 
@@ -907,7 +907,7 @@ You can view your current voting power using third party tools such as https://s
 <a class="anchor" name="What_determines_how_much_of_the_curation_reward_goes_to_the_author_versus_curators"></a>
 ## What determines how much of the curation reward goes to the author versus curators?
 
-The rewards are allocated so that 75% of the payout goes to the author of the post/comment, and 25% goes to the curator.
+The rewards are allocated so that 75% of the payout goes to the author of the post/comment, and 25% goes to the curator. 
 
 Of the 25% that goes to the curator, that portion will be split between the author and the curator if the curator votes within the first 30 minutes. The split of the 25% between the author and curator during the first 30 minutes is calculated linearly based on the time the vote is cast.
 
@@ -933,7 +933,7 @@ No. Since downvoting reduces the rewards on a post/comment, it does not earn cur
 <a class="anchor" name="What_are_curation_trails"></a>
 ## What are curation trails?
 
-Some users decide to use third party applications such as <a href="https://streemian.com/">Streemian</a> to automatically cast votes. Users can automatically vote for the same posts and comments that other users does. Typically they will set this up to follow the votes of users who are good at curating. When a user has other users automatically voting for the same content that they do, the people that automatically vote after them are called their "curation trail".
+Some users decide to use third party applications such as <a href="https://streemian.com/">Streemian</a> to automatically cast votes. Users can automatically vote for the same posts and comments that other users does. Typically they will set this up to follow the votes of users who are good at curating. When a user has other users automatically voting for the same content that they do, the people that automatically vote after them are called their "curation trail". 
 
 <a href="/faq.html#Table_of_Contents_Voting_and_Curating">^</a>
 <a class="anchor" name="Why_don_t_my_upvotes_have_an_effect_on_a_post_s_rewards"></a>
@@ -998,7 +998,7 @@ https://steemit.com/steem-help/@mindover/don-t-plagiarize-images-here-are-13-fre
 <a class="anchor" name="What_is_Steemcleaners"></a>
 ## What is Steemcleaners?
 
-Steemcleaners are a group of Steemians concerned with plagiarism, copy/paste, spam, scams and other forms of abuse on Steemit.
+Steemcleaners are a group of Steemians concerned with plagiarism, copy/paste, spam, scams and other forms of abuse on Steemit. 
 https://steemit.com/steemcleaners/@steemcleaners/announcing-steemcleaners-the-steemit-abuse-fighting-team
 
 <a href="/faq.html#Table_of_Contents_Plagiarism__Spam__and_Abuse">^</a>
@@ -1024,7 +1024,7 @@ You can report any abusive content to the <a href="https://steemit.chat/channel/
 <a class="anchor" name="What_is_Reputation"></a>
 ## What is Reputation?
 
-Every user has a reputation score next to their name. The reputation score is one way Steemit measures the amount of value you have brought to the community. It is also a mechanism that is designed to help reduce abuse of the Steemit platform.
+Every user has a reputation score next to their name. The reputation score is one way Steemit measures the amount of value you have brought to the community. It is also a mechanism that is designed to help reduce abuse of the Steemit platform. 
 
 Your reputation goes up when accounts vote on your content. Getting downvoted by someone with a higher reputation can push your reputation down and make your posts less visible.
 
@@ -1053,7 +1053,7 @@ Every time another user upvotes one of your posts or comments, it increases your
 
 The only way for your reputation score to go down is to be downvoted by another user. Not all downvotes will cause a reputation loss though.
 
-- Downvotes from users with a lower reputation score than you will not hurt your score.
+- Downvotes from users with a lower reputation score than you will not hurt your score. 
 - If your post or comment that was downvoted still received more upvotes than downvotes (weighted by SP), then the net effect on your reputation score will still be positive.
 
 <a href="/faq.html#Table_of_Contents_Reputation">^</a>
@@ -1106,7 +1106,7 @@ Steemit is a front end web interface to interact with the blockchain, and view t
 <a class="anchor" name="How_is_Steem_different_from_Bitcoin"></a>
 ## How is Steem different from Bitcoin?
 
-On a technical level, the two networks rely on the same model of a blockchain, but are built upon different technologies and codebase. Steem is based on a new state-of-the-art blockchain technology called Graphene, which uses "witnesses" instead of "miners" to produce blocks.
+On a technical level, the two networks rely on the same model of a blockchain, but are built upon different technologies and codebase. Steem is based on a new state-of-the-art blockchain technology called Graphene, which uses "witnesses" instead of "miners" to produce blocks. 
 
 The "delegated proof of stake" model of using witnesses instead of miners allows for greater efficiency in block production. With BTC, 100% of the new coins that are created are allocated to block producers (miners). With the Steem blockchain, only 10% of the new coins are paid to block producers (witnesses). The other 90% of new STEEM coins are awarded to content producers, curators, and STEEM Power holders.
 
@@ -1181,7 +1181,7 @@ Currently, the Steem and Steemit logos are the same and is free to use. In the f
 <a class="anchor" name="Can_I_purchase_official_Steemit_merchandise"></a>
 ## Can I purchase official Steemit merchandise?
 
-There is no official merchandise yet, but it is easy to make Steemit gear on zazzle.com or similar websites.
+There is no official merchandise yet, but it is easy to make Steemit gear on zazzle.com or similar websites. 
 
 Here is a post with instructions from @artist1989:
 https://steemit.com/art/@artist1989/custom-steem-and-steemit-art-and-instructions-on-how-to-create-your-very-own-steem-steemit-gear-t-shirts-coffee-mugs-etc
@@ -1233,7 +1233,7 @@ The password has to be long and random for maximum account security.
 
 **Posting key** - The posting key allows accounts to post, comment, edit, vote, resteem, and follow or mute other accounts. Most users should be logging into Steemit every day with the posting key. You are more likely to have your password or key compromised the more you use it so a limited posting key exists to restrict the damage that a compromised account key would cause.
 
-**Active key** - The active key is meant for more sensitive tasks such as transferring funds, power up/down transactions, converting Steem Dollars, voting for witnesses, updating profile details and avatar, and placing a market order.
+**Active key** - The active key is meant for more sensitive tasks such as transferring funds, power up/down transactions, converting Steem Dollars, voting for witnesses, updating profile details and avatar, and placing a market order. 
 
 **Memo key** - Currently the memo key is not used.
 

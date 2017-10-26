@@ -70,7 +70,7 @@ class KeyEdit extends Component {
             <form onSubmit={handleSubmit(data => onKeyChanged(data))}>
                 <div className="row">
                     <div className={'column small-12' + (password.touched && password.error ? ' error' : '')}>
-                        <label>Change {authType} Key (Password or WIF)</label>
+                        <label>Change “{authType}” Key (Password or WIF)</label>
                         <input ref="key" type="password" {...cleanReduxInput(password)}
                             placeholder="Password or WIF" autoComplete="off" />
                         <span className="error">{password.touched && password.error && password.error}&nbsp;</span>

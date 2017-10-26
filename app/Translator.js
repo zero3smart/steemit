@@ -67,7 +67,7 @@ class DummyComponentToExportProps extends React.Component {
 		return <span hidden>{' '}</span>
 	}
 
-	// ?? IMPORTANT
+	// ⚠️ IMPORTANT
 	// use 'componentWillMount' instead of 'componentDidMount',
 	// or there will be all sorts of partially rendered components
 	componentWillMount() {

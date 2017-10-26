@@ -320,7 +320,7 @@ class ReplyEditor extends React.Component {
             jsonMetadata, autoVote: autoVoteValue, payoutType,
             successCallback: successCallbackWrapper, errorCallback
         }
-        const postLabel = username ? <Tooltip t={'Post as ' + username + ''}>Post</Tooltip> : 'Post'
+        const postLabel = username ? <Tooltip t={'Post as “' + username + '”'}>Post</Tooltip> : 'Post'
         const hasTitleError = title && title.touched && title.error
         let titleError = null
         // The Required title error (triggered onBlur) can shift the form making it hard to click on things..

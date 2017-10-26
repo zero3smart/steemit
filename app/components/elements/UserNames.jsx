@@ -46,9 +46,9 @@ class UserNames extends Component {
             if(and_names.length == 1) { // and <name>
                 out.push(userLink(and_names[0]));
             } else { // and <x> others...
-                out.push(<DropdownMenu
+                out.push(<DropdownMenu 
                     key="_others"
-                    selected={and_names.length + " others"}
+                    selected={and_names.length + " others"} 
                     items={and_names.map(name => {return {value: name, link: '/@' + name}})}
                     el="div" />);
             }

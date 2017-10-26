@@ -200,7 +200,7 @@ class PostFull extends React.Component {
         if (content.category) link = `/${content.category}${link}`;
 
         const {category, title, body} = content;
-        if (process.env.BROWSER && title) document.title = title + '  Steemit';
+        if (process.env.BROWSER && title) document.title = title + ' — Steemit';
 
         let content_body = content.body;
         const url = `/${category}/@${author}/${permlink}`
@@ -217,7 +217,7 @@ class PostFull extends React.Component {
         this.share_params = {
             link,
             url: 'https://' + APP_DOMAIN + link,
-            title: title + '  Steemit',
+            title: title + ' — Steemit',
             desc: p.desc
         };
 

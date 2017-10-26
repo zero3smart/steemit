@@ -116,17 +116,17 @@ export default function useEnterAndConfirmMobilePages(app) {
 
                             <div className="secondary">
 
-                We need to send you a quick text.
+				We need to send you a quick text.
                                 <br />
                                 <br />
-                With each Steemit account comes a free initial
-                grant of Steem Power!  Phone verification helps
-                cut down on spam accounts.
+				With each Steemit account comes a free initial
+				grant of Steem Power!  Phone verification helps
+				cut down on spam accounts.
 
                                 <br />
                                 <br />
 
-                <em>Your phone number will not be used for any
+				<em>Your phone number will not be used for any
 other purpose other than account verification and (potentially) account
 recovery should your account ever be compromised.</em>
 

@@ -1,174 +1,266 @@
-if(process.env.NEW_RELIC_APP_NAME) require('newrelic');
+import route from 'koa-route';
+import Purest from 'purest';
+import models from 'db/models';
+import findUser from 'db/utils/find_user';
+import {esc, escAttrs} from 'db/models';
 
-import path from 'path';
-import Koa from 'koa';
-import mount from 'koa-mount';
-import helmet from 'koa-helmet';
-import koa_logger from 'koa-logger';
-import prod_logger from './prod_logger';
-import favicon from 'koa-favicon';
-import staticCache from 'koa-static-cache';
-import useRedirects from './redirects';
-import useOauthLogin from './api/oauth';
-import useGeneralApi from './api/general';
-import useAccountRecoveryApi from './api/account_recovery';
-import useNotificationsApi from './api/notifications';
-import useEnterAndConfirmEmailPages from './server_pages/enter_confirm_email';
-import useEnterAndConfirmMobilePages from './server_pages/enter_confirm_mobile';
-import isBot from 'koa-isbot';
-import session from '@steem/crypto-session';
-import csrf from 'koa-csrf';
-import flash from 'koa-flash';
-import minimist from 'minimist';
-import Grant from 'grant-koa';
-import config from '../config';
-import secureRandom from 'secure-random'
+const facebook = new Purest({provider: 'facebook'});
+const reddit = new Purest({provider: 'reddit'});
 
-const grant = new Grant(config.grant);
-// import uploadImage from 'server/upload-image' //medium-editor
-
-const app = new Koa();
-app.name = 'Steemit app';
-const env = process.env.NODE_ENV || 'development';
-const cacheOpts = {maxAge: 86400000, gzip: true};
-
-app.keys = [config.session_key];
-const crypto_key = config.server_session_secret;
-session(app, {maxAge: 1000 * 3600 * 24 * 60, crypto_key});
-csrf(app);
-
-app.use(mount(grant));
-app.use(flash({key: 'flash'}));
-
-// some redirects
-app.use(function *(next) {
-    // redirect to home page/feed if known account
-    if (this.method === 'GET' && this.url === '/' && this.session.a) {
-        this.status = 302;
-        this.redirect(`/@${this.session.a}/feed`);
-        return;
-    }
-    // normalize user name url from cased params
-    if (this.method === 'GET' && /^\/(@[\w\.\d-]+)\/?$/.test(this.url)) {
-        const p = this.originalUrl.toLowerCase();
-        if(p !== this.originalUrl) {
-            this.redirect(p);
-            return;
-        }
-    }
-    // normalize top category filtering from cased params
-    if (this.method === 'GET' && /^\/(hot|created|trending|active)\//.test(this.url)) {
-        const segments = this.url.split('/')
-        const category = segments[2]
-        if(category !== category.toLowerCase()) {
-            segments[2] = category.toLowerCase()
-            this.redirect(segments.join('/'));
-            return;
-        }
-    }
-    // start registration process if user get to create_account page and has no id in session yet
-    if(this.url === '/create_account' && !this.session.user) {
-        this.status = 302;
-        this.redirect('/enter_email');
-        return;
-    }
-    // remember ch, cn, r url params in the session and remove them from url
-    if (this.method === 'GET' && /\?[^\w]*(ch=|cn=|r=)/.test(this.url)) {
-        let redir = this.url.replace(/((ch|cn|r)=[^&]+)/gi, r => {
-            const p = r.split('=');
-            if (p.length === 2) this.session[p[0]] = p[1];
-            return '';
-        });
-        redir = redir.replace(/&&&?/, '');
-        redir = redir.replace(/\?&?$/, '');
-        console.log(`server redirect ${this.url} -> ${redir}`);
-        this.status = 302;
-        this.redirect(redir);
-    } else {
-        yield next;
-    }
-});
-
-if (env === 'production') {
-    // load production middleware
-    app.use(require('koa-conditional-get')());
-    app.use(require('koa-etag')());
-    app.use(require('koa-compressor')());
-    app.use(prod_logger());
-} else {
-    app.use(koa_logger());
+function logErrorAndRedirect(ctx, where, error) {
+    const s = ctx.session;
+    let msg = 'unknown';
+    if (error.toString()) msg = error.toString()
+    else msg = error.error && error.error.message ? error.error.message : (error.msg || JSON.stringify(error));
+    console.error(`oauth error [${where}|${s.user}|${s.uid}]|${ctx.req.headers['user-agent']}: ${msg}`);
+    if (process.env.NODE_ENV === 'development') console.log(error.stack);
+    ctx.flash = {alert: `${where} error: ${msg}`};
+    ctx.redirect('/');
+    return null;
 }
 
-app.use(helmet());
-
-app.use(mount('/static', staticCache(path.join(__dirname, '../app/assets/static'), cacheOpts)));
-
-app.use(mount('/robots.txt', function* () {
-    this.set('Cache-Control', 'public, max-age=86400000');
-    this.type = 'text/plain';
-    this.body = "User-agent: *\nAllow: /";
-}));
-
-// set user's uid - used to identify users in logs and some other places
-app.use(function* (next) {
-    const last_visit = this.session.last_visit;
-    this.session.last_visit = (new Date()).getTime() / 1000 | 0;
-    if (!this.session.uid) {
-        this.session.uid = secureRandom.randomBuffer(13).toString('hex');
-        this.session.new_visit = true;
-    } else {
-        this.session.new_visit = this.session.last_visit - last_visit > 1800;
-    }
-    yield next;
-});
-
-useRedirects(app);
-useEnterAndConfirmEmailPages(app);
-useEnterAndConfirmMobilePages(app);
-
-if (env === 'production') {
-    app.use(helmet.contentSecurityPolicy(config.helmet));
+function getRemoteIp(req) {
+    const remote_address = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    const ip_match = remote_address ? remote_address.match(/(\d+\.\d+\.\d+\.\d+)/) : null;
+    return ip_match ? ip_match[1] : esc(remote_address);
 }
 
-useAccountRecoveryApi(app);
-useOauthLogin(app);
-useGeneralApi(app);
-useNotificationsApi(app);
-
-app.use(favicon(path.join(__dirname, '../app/assets/images/favicons/favicon.ico')));
-app.use(isBot());
-app.use(mount('/favicons', staticCache(path.join(__dirname, '../app/assets/images/favicons'), cacheOpts)));
-app.use(mount('/images', staticCache(path.join(__dirname, '../app/assets/images'), cacheOpts)));
-// Proxy asset folder to webpack development server in development mode
-if (env === 'development') {
-    const PORT = parseInt(process.env.PORT, 10) + 1 || 3001;
-    const proxy = require('koa-proxy')({
-        host: 'http://0.0.0.0:' + PORT,
-        map: (filePath) => 'assets/' + filePath
+function retrieveFacebookUserData(access_token) {
+    return new Promise((resolve, reject) => {
+        facebook.query()
+            .get('me?fields=name,email,location,picture{url},verified')
+            .auth(access_token)
+            .request((err, res) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(res.body);
+                }
+            });
     });
-    app.use(mount('/assets', proxy));
-} else {
-    app.use(mount('/assets', staticCache(path.join(__dirname, '../dist'), cacheOpts)));
 }
 
-if (env !== 'test') {
-    const appRender = require('./app_render');
-    app.use(function* () {
-        yield appRender(this);
-        // if (app_router.dbStatus.ok) recordWebEvent(this, 'page_load');
-        const bot = this.state.isBot;
-        if (bot) {
-            console.log(`  --> ${this.method} ${this.originalUrl} ${this.status} (BOT '${bot}')`);
+function* handleFacebookCallback() {
+    console.log('-- /handle_facebook_callback -->', this.session.uid, this.query);
+    let email = null;
+    try {
+        if (this.query['error[error][message]']) {
+            return logErrorAndRedirect(this, 'facebook:1', this.query['error[error][message]']);
         }
-    });
+        const u = yield retrieveFacebookUserData(this.query.access_token);
+        email = u.email;
+        const attrs = {
+            uid: this.session.uid,
+            name: u.name,
+            email: u.email,
+            first_name: u.first_name,
+            last_name: u.last_name,
+            birthday: u.birthday ? new Date(u.birthday) : null,
+            gender: u.gender,
+            picture_small: u.picture ? u.picture.data.url : null,
+            location_id: u.location ? u.location.id : null,
+            location_name: u.location ? u.location.name : null,
+            locale: u.locale,
+            timezone: u.timezone,
+            remote_ip: getRemoteIp(this.request.req),
+            verified: u.verified,
+            waiting_list: false,
+            facebook_id: u.id
+        };
+        const i_attrs = {
+            provider: 'facebook',
+            uid: u.id,
+            name: u.name,
+            email: u.email,
+            verified: u.verified,
+            provider_user_id: u.id
+        };
+        // const i_attrs_email = {
+        //     provider: 'email',
+        //     email: u.email,
+        //     verified: false
+        // };
 
-    const argv = minimist(process.argv.slice(2));
-    const port = parseInt(argv.port, 10) || parseInt(process.env.PORT, 10) || 3002;
-    app.listen(port);
+        let user = yield findUser({email: u.email, provider_user_id: u.id});
+        console.log('-- /handle_facebook_callback user id -->', this.session.uid, user ? user.id : 'not found');
 
-    // Tell parent process koa-server is started
-    if (process.send) process.send('online');
-    console.log(`Application started on port ${port}`);
+        let account_recovery_record = null;
+        const provider = this.session.prv = 'facebook';
+        if (this.session.arec) {
+            const arec = yield models.AccountRecoveryRequest.findOne({
+                attributes: ['id', 'created_at', 'account_name', 'owner_key'],
+                where: {id: this.session.arec}
+            });
+            if (arec) {
+                const seconds_ago = (Date.now() - arec.created_at) / 1000;
+                console.log('-- /handle_facebook_callback arec -->', this.session.uid, seconds_ago, arec.created_at);
+                if (seconds_ago < 600) account_recovery_record = arec;
+            }
+        }
+        if (account_recovery_record) {
+            if (user) {
+                const existing_account = yield models.Account.findOne({
+                    attributes: ['id'],
+                    where: {user_id: user.id, name: account_recovery_record.account_name},
+                    order: 'id DESC'
+                });
+                if (existing_account) {
+                    console.log('-- arec: confirmed user for account -->', this.session.uid, provider, account_recovery_record.id, existing_account.name, this.session.uid, account_recovery_record.owner_key);
+                    account_recovery_record.update({user_id: user.id, status: 'confirmed'});
+                    this.redirect('/recover_account_step_2');
+                } else {
+                    console.log('-- arec: failed to confirm user for account (no account) -->', this.session.uid, provider, account_recovery_record.id, user.id, this.session.uid, account_recovery_record.owner_key);
+                    account_recovery_record.update({user_id: user.id, status: 'account not found'});
+                    this.body = 'We cannot verify the user account. Please contact support@steemit.com';
+                }
+            } else {
+                console.log('-- arec: failed to confirm user for account (no user) -->', this.session.uid, provider, this.session.uid, this.session.email);
+                account_recovery_record.update({status: 'user not found'});
+                this.body = 'We cannot verify the user account. Please contact support@steemit.com';
+            }
+            return null;
+        }
+        // no longer necessary since there is phone verification now
+        // if (!u.email) {
+        //     console.log('-- /handle_facebook_callback no email -->', this.session.uid, u);
+        //     this.flash = {alert: 'Facebook login didn\'t provide any email addresses. Please make sure your Facebook account has a primary email address and try again.'};
+        //     this.redirect('/');
+        //     return;
+        // }
+        // if (!u.verified) {
+        //     throw new Error('Not verified Facebook account. Please verify your Facebook account and try again to sign up to Steemit.');
+        // }
+
+        if (user) {
+            attrs.id = user.id;
+            yield models.User.update(attrs, {where: {id: user.id}});
+            yield models.Identity.update(i_attrs, {where: {user_id: user.id, provider: 'facebook'}});
+            console.log('-- fb updated user -->', this.session.uid, user.id, u.name, u.email);
+        } else {
+            user = yield models.User.create(attrs);
+            i_attrs.user_id = user.id;
+            console.log('-- fb created user -->', user.id, u.name, u.email);
+            const identity = yield models.Identity.create(i_attrs);
+            console.log('-- fb created identity -->', this.session.uid, identity.id);
+            // if (i_attrs_email.email) {
+            //     i_attrs_email.user_id = user.id
+            //     const email_identity = yield models.Identity.create(i_attrs_email);
+            //     console.log('-- fb created email identity -->', this.session.uid, email_identity.id);
+            // }
+        }
+        this.session.user = user.id;
+    } catch (error) {
+        return logErrorAndRedirect(this, 'facebook:2', error);
+    }
+    this.flash = {success: 'Successfully authenticated with Facebook'};
+    this.redirect('/enter_email' + (email ? `?email=${email}` : ''));
+    return null;
 }
 
-module.exports = app;
+function retrieveRedditUserData(access_token) {
+    return new Promise((resolve, reject) => {
+        reddit.query()
+            .get('https://oauth.reddit.com/api/v1/me.json?raw_json=1')
+            .headers({
+                Authorization: `bearer ${access_token}`,
+                'User-Agent': 'Steembot/1.0 (+http://steemit.com)',
+                Accept: 'application/json',
+                'Content-type': 'application/json'
+            })
+            .request((err, res) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    delete res.body.features;
+                    resolve(res.body);
+                }
+            });
+    });
+}
+
+function* handleRedditCallback() {
+    try {
+        const u = yield retrieveRedditUserData(this.query.access_token);
+        console.log('-- /handle_reddit_callback  -->', this.session.uid, u);
+        let user = yield findUser({provider_user_id: u.id});
+        console.log('-- /handle_reddit_callback user id -->', this.session.uid, user ? user.id : 'not found');
+
+        let account_recovery_record = null;
+        const provider = this.session.prv = 'reddit';
+        if (this.session.arec) {
+            const arec = yield models.AccountRecoveryRequest.findOne({
+                attributes: ['id', 'created_at', 'account_name', 'owner_key'],
+                where: {id: this.session.arec}
+            });
+            if (arec) {
+                const seconds_ago = (Date.now() - arec.created_at) / 1000;
+                if (seconds_ago < 600) account_recovery_record = arec;
+            }
+        }
+        if (account_recovery_record) {
+            if (user) {
+                const existing_account = yield models.Account.findOne({
+                    attributes: ['id'],
+                    where: {user_id: user.id, name: account_recovery_record.account_name},
+                    order: 'id DESC'
+                });
+                if (existing_account) {
+                    console.log('-- arec: confirmed user for account -->', this.session.uid, provider, account_recovery_record.id, existing_account.name, this.session.uid, account_recovery_record.owner_key);
+                    account_recovery_record.update({user_id: user.id, status: 'confirmed'});
+                    this.redirect('/recover_account_step_2');
+                } else {
+                    console.log('-- arec: failed to confirm user for account (no account) -->', this.session.uid, provider, account_recovery_record.id, user.id, this.session.uid, account_recovery_record.owner_key);
+                    account_recovery_record.update({user_id: user.id, status: 'account not found'});
+                    this.body = 'We cannot verify the user account. Please contact support@steemit.com';
+                }
+            } else {
+                console.log('-- arec: failed to confirm user for account (no user) -->', this.session.uid, provider, this.session.arec, this.session.email);
+                account_recovery_record.update({status: 'user not found'});
+                this.body = 'We cannot verify the user account. Please contact support@steemit.com';
+            }
+            return null;
+        }
+
+        const waiting_list = !u.comment_karma || u.comment_karma < 5;
+        const i_attrs = {
+            provider: 'reddit',
+            provider_user_id: u.id,
+            name: u.name,
+            score: u.comment_karma
+        };
+        const attrs = {
+            id: user ? user.id : null,
+            uid: this.session.uid,
+            name: u.name,
+            remote_ip: getRemoteIp(this.req),
+            verified: false
+        };
+        if (user) {
+            if (!waiting_list) attrs.waiting_list = false;
+            yield models.User.update(attrs, {where: {id: user.id}});
+            yield models.Identity.update(i_attrs, {where: {user_id: user.id, provider: 'reddit'}});
+            console.log('-- reddit updated user -->', this.session.uid, user.id, u.name);
+        } else {
+            attrs.waiting_list = waiting_list;
+            user = yield models.User.create(attrs);
+            console.log('-- reddit created user -->', this.session.uid, user.id, u.name);
+            i_attrs.user_id = user.id;
+            const identity = yield models.Identity.create(i_attrs);
+            console.log('-- reddit created identity -->', this.session.uid, identity.id);
+        }
+        this.session.user = user.id;
+        if (waiting_list) {
+            this.redirect('/waiting_list.html');
+            return null;
+        }
+    } catch (error) {
+        return logErrorAndRedirect(this, 'reddit', error);
+    }
+    this.redirect('/enter_email');
+    return null;
+}
+
+export default function useOauthLogin(app) {
+    app.use(route.get('/handle_facebook_callback', handleFacebookCallback));
+    app.use(route.get('/handle_reddit_callback', handleRedditCallback));
+}

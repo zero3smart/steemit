@@ -79,3 +79,4 @@ export default class DropdownMenu extends React.Component {
         return React.createElement(el, {className: cls}, [entry, menu]);
     }
 }
+

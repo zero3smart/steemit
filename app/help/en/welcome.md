@@ -249,7 +249,7 @@ You are entirely responsible for keeping your password, and keeping it secure.
 
 Save your master key and keep it somewhere safe.
 
-It is strongly recommended that you store an offline copy of your password somewhere safe in case of a hard drive failure or other calamity. Consider digital offline storage, such as a flash drive or burned CD, as well as printed paper. Use a safe deposit box for best redundancy.
+It is strongly recommended that you store an offline copy of your password somewhere safe in case of a hard drive failure or other calamity. Consider digital offline storage, such as a flash drive or burned CD, as well as printed paper. Use a safe deposit box for best redundancy. 
 
 If your account is valuable, treat it like a valuable!
 
